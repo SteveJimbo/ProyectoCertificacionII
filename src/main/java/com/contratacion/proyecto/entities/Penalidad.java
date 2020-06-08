@@ -1,13 +1,16 @@
 package com.contratacion.proyecto.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,5 +33,58 @@ public class Penalidad implements Serializable{
 	
 	@Column(name="monto")
 	private Float monto;
+	
+	@OneToMany(mappedBy="penalidad", fetch=FetchType.LAZY)
+	private List<Sancion> sanciones;
+
+	public Penalidad() {
+		super();
+	}
+	
+	public Penalidad(Integer id) {
+		super();
+		this.idpenalidad = id;
+	}
+
+	public Integer getIdpenalidad() {
+		return idpenalidad;
+	}
+
+	public void setIdpenalidad(Integer idpenalidad) {
+		this.idpenalidad = idpenalidad;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Float getMonto() {
+		return monto;
+	}
+
+	public void setMonto(Float monto) {
+		this.monto = monto;
+	}
+
+	public List<Sancion> getSanciones() {
+		return sanciones;
+	}
+
+	public void setSanciones(List<Sancion> sanciones) {
+		this.sanciones = sanciones;
+	}
+	
 	
 }

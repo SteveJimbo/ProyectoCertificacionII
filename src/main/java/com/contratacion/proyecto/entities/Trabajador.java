@@ -1,13 +1,18 @@
 package com.contratacion.proyecto.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -45,5 +50,121 @@ public class Trabajador implements Serializable {
 	
 	@Column(name="estado_civil")
 	private String estadoCivil;
+	
+	@JoinColumn(name="fk_cargo", referencedColumnName="pk_cargo")
+	@ManyToOne
+	private Cargo cargo;
+	
+	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY)
+	private List<Sancion> sanciones;
+	
+	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY)
+	private List<RolDePago> roles;
+
+	public Trabajador() {
+		super();
+	}
+	
+	public Trabajador(Integer id) {
+		super();
+		this.idtrabajador = id;
+	}
+
+	public Integer getIdtrabajador() {
+		return idtrabajador;
+	}
+
+	public void setIdtrabajador(Integer idtrabajador) {
+		this.idtrabajador = idtrabajador;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public String getNacionalidad() {
+		return nacionalidad;
+	}
+
+	public void setNacionalidad(String nacionalidad) {
+		this.nacionalidad = nacionalidad;
+	}
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
+	public List<Sancion> getSanciones() {
+		return sanciones;
+	}
+
+	public void setSanciones(List<Sancion> sanciones) {
+		this.sanciones = sanciones;
+	}
+
+	public List<RolDePago> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<RolDePago> roles) {
+		this.roles = roles;
+	}
+	
 	
 }
