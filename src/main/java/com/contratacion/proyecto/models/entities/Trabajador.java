@@ -1,4 +1,4 @@
-package com.contratacion.proyecto.entities;
+package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
 import java.util.List;

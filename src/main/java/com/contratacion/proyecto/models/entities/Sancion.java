@@ -1,4 +1,4 @@
-package com.contratacion.proyecto.entities;
+package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -14,58 +14,59 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="roles_de_pago")
-public class RolDePago implements Serializable{
+@Table(name="sanciones")
+public class Sancion implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="pk_rol")
-	private Integer idrol;
+	@Column(name="pk_sancion")
+	private Integer idsancion;
 	
-	@Column(name="fecha_impresion")
-	private Calendar fechaImpresion;
+	@Column(name="fecha")
+	private Calendar fecha;
 	
-	@Column(name="total")
-	private Float total;
+	@JoinColumn(name="fk_penalidad", referencedColumnName="pk_penalidad")
+	@ManyToOne
+	private Penalidad penalidad;
 	
 	@JoinColumn(name="fk_trabajador", referencedColumnName="pk_trabajador")
 	@ManyToOne
 	private Trabajador trabajador;
 
-	public RolDePago() {
+	public Sancion() {
 		super();
 	}
 	
-	public RolDePago(Integer id) {
+	public Sancion(Integer id) {
 		super();
-		this.idrol = id;
+		this.idsancion = id;
 	}
 
-	public Integer getIdrol() {
-		return idrol;
+	public Integer getIdsancion() {
+		return idsancion;
 	}
 
-	public void setIdrol(Integer idrol) {
-		this.idrol = idrol;
+	public void setIdsancion(Integer idsancion) {
+		this.idsancion = idsancion;
 	}
 
-	public Calendar getFechaImpresion() {
-		return fechaImpresion;
+	public Calendar getFecha() {
+		return fecha;
 	}
 
-	public void setFechaImpresion(Calendar fechaImpresion) {
-		this.fechaImpresion = fechaImpresion;
+	public void setFecha(Calendar fecha) {
+		this.fecha = fecha;
 	}
 
-	public Float getTotal() {
-		return total;
+	public Penalidad getPenalidad() {
+		return penalidad;
 	}
 
-	public void setTotal(Float total) {
-		this.total = total;
+	public void setPenalidad(Penalidad penalidad) {
+		this.penalidad = penalidad;
 	}
 
 	public Trabajador getTrabajador() {

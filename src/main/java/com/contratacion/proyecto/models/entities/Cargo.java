@@ -1,4 +1,4 @@
-package com.contratacion.proyecto.entities;
+package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,16 +14,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="penalidades")
-public class Penalidad implements Serializable{
-	
+@Table(name="cargos")
+public class Cargo implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="pk_penalidad")
-	private Integer idpenalidad;
+	@Column(name="pk_cargo")
+	private Integer idcargo;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -31,27 +31,27 @@ public class Penalidad implements Serializable{
 	@Column(name="descripcion")
 	private String descripcion;
 	
-	@Column(name="monto")
-	private Float monto;
+	@Column(name="sueldo")
+	private String sueldo;
 	
-	@OneToMany(mappedBy="penalidad", fetch=FetchType.LAZY)
-	private List<Sancion> sanciones;
+	@OneToMany(mappedBy="cargo", fetch=FetchType.LAZY)
+	private List<Trabajador> trabajadores;
 
-	public Penalidad() {
+	public Cargo() {
 		super();
 	}
 	
-	public Penalidad(Integer id) {
+	public Cargo(Integer id) {
 		super();
-		this.idpenalidad = id;
+		this.idcargo = id;
 	}
 
-	public Integer getIdpenalidad() {
-		return idpenalidad;
+	public Integer getIdcargo() {
+		return idcargo;
 	}
 
-	public void setIdpenalidad(Integer idpenalidad) {
-		this.idpenalidad = idpenalidad;
+	public void setIdcargo(Integer idcargo) {
+		this.idcargo = idcargo;
 	}
 
 	public String getNombre() {
@@ -70,20 +70,20 @@ public class Penalidad implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public Float getMonto() {
-		return monto;
+	public String getSueldo() {
+		return sueldo;
 	}
 
-	public void setMonto(Float monto) {
-		this.monto = monto;
+	public void setSueldo(String sueldo) {
+		this.sueldo = sueldo;
 	}
 
-	public List<Sancion> getSanciones() {
-		return sanciones;
+	public List<Trabajador> getTrabajadores() {
+		return trabajadores;
 	}
 
-	public void setSanciones(List<Sancion> sanciones) {
-		this.sanciones = sanciones;
+	public void setTrabajadores(List<Trabajador> trabajadores) {
+		this.trabajadores = trabajadores;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.contratacion.proyecto.entities;
+package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -14,59 +14,58 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sanciones")
-public class Sancion implements Serializable{
+@Table(name="roles_de_pago")
+public class RolDePago implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="pk_sancion")
-	private Integer idsancion;
+	@Column(name="pk_rol")
+	private Integer idrol;
 	
-	@Column(name="fecha")
-	private Calendar fecha;
+	@Column(name="fecha_impresion")
+	private Calendar fechaImpresion;
 	
-	@JoinColumn(name="fk_penalidad", referencedColumnName="pk_penalidad")
-	@ManyToOne
-	private Penalidad penalidad;
+	@Column(name="total")
+	private Float total;
 	
 	@JoinColumn(name="fk_trabajador", referencedColumnName="pk_trabajador")
 	@ManyToOne
 	private Trabajador trabajador;
 
-	public Sancion() {
+	public RolDePago() {
 		super();
 	}
 	
-	public Sancion(Integer id) {
+	public RolDePago(Integer id) {
 		super();
-		this.idsancion = id;
+		this.idrol = id;
 	}
 
-	public Integer getIdsancion() {
-		return idsancion;
+	public Integer getIdrol() {
+		return idrol;
 	}
 
-	public void setIdsancion(Integer idsancion) {
-		this.idsancion = idsancion;
+	public void setIdrol(Integer idrol) {
+		this.idrol = idrol;
 	}
 
-	public Calendar getFecha() {
-		return fecha;
+	public Calendar getFechaImpresion() {
+		return fechaImpresion;
 	}
 
-	public void setFecha(Calendar fecha) {
-		this.fecha = fecha;
+	public void setFechaImpresion(Calendar fechaImpresion) {
+		this.fechaImpresion = fechaImpresion;
 	}
 
-	public Penalidad getPenalidad() {
-		return penalidad;
+	public Float getTotal() {
+		return total;
 	}
 
-	public void setPenalidad(Penalidad penalidad) {
-		this.penalidad = penalidad;
+	public void setTotal(Float total) {
+		this.total = total;
 	}
 
 	public Trabajador getTrabajador() {
