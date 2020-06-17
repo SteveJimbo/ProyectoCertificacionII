@@ -24,22 +24,16 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>C&eacute;dula</th>
-				<th>Fec. Nacimiento</th>
-				<th><a class="btn btn-sm btn-success" th:href="@{/alumno/create}">&nbsp;Nuevo</a></th>
+				<th>Fec. Incidencia</th>
+				<th><a class="btn btn-sm btn-success" th:href="@{/sancion/create}">&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="a : ${alumnos}">
-				<td th:text="${a.nombre}"></td>
-				<td th:text="${a.apellido}"></td>
-				<td th:text="${a.cedula}"></td>
-				<td th:text="${a.fechaNac()}"></td>
+			<tr th:each="a : ${sanciones}">
+				<td th:text="${a.fecha()}"></td>
 				<td>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/update/} + ${a.idpersona}">&nbsp;Actualizar</a>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/retrieve/} + ${a.idpersona}">&nbsp;Consultar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/sancion/update/} + ${a.idsancion}">&nbsp;Actualizar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/sancion/retrieve/} + ${a.idsancion}">&nbsp;Consultar</a>
 				</td>
 			</tr>
 		</tbody>

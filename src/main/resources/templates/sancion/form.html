@@ -31,59 +31,27 @@
 					<div class="text-center">
 						<h1 th:text="${title}" class="h4 text-gray-900 mb-4"></h1>
 					</div>
-					<form class="user" th:action="@{/alumno/save}" th:object="${alumno}" method="post">
+					<form class="user" th:action="@{/sancion/save}" th:object="${sancion}" method="post">
 						<hr>
+						
+						<h6>Fecha Incidencia:</h6>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{cedula}" placeholder="C&eacute;dula">
+								<input type="date" class="form-control form-control-user" th:field="*{fecha}">
 							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{identificador}" placeholder="Identificador">
-							</div>
+	
 						</div>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{nombre}" placeholder="Nombres">
-							</div>
-							<div class="form-group col-sm-6">
-								<input type="text" class="form-control form-control-user" th:field="*{apellido}" placeholder="Apellidos">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="email" class="form-control form-control-user" th:field="*{email}" placeholder="Correo electr&oacute;nico">
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{telefono}" placeholder="Tel&eacute;fono">
-							</div>
-						</div>
-						<h6>Nacimiento:</h6>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="date" class="form-control form-control-user" th:field="*{fechaNacimiento}">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" class="form-control form-control-user" th:field="*{lugarNacimiento}" placeholder="Lugar">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label class="radio-inline"><input type="radio" th:field="*{sexo}" value="M" />&nbsp;Mujer</label>
-							</div>
-							<div class="col-sm-6">
-								<label class="radio-inline"><input type="radio"	th:field="*{sexo}" value="H" />&nbsp;Hombre</label>
-							</div>
-						</div>
+						
 						<hr>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<a th:href="@{/alumno/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+								<a th:href="@{/sancion/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
 							</div>
 						</div>
-						<input type="hidden" th:field="*{idpersona}" />
+						<input type="hidden" th:field="*{idsancion}" />
 					</form>
 				</div>
 			</div>
