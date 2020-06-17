@@ -31,59 +31,59 @@
 					<div class="text-center">
 						<h1 th:text="${title}" class="h4 text-gray-900 mb-4"></h1>
 					</div>
-					<form class="user" th:action="@{/alumno/save}" th:object="${alumno}" method="post">
+					<form class="user" th:action="@{/trabajador/save}" th:object="${trabajador}" method="post">
 						<hr>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<input type="text" class="form-control form-control-user" th:field="*{nombres}" placeholder="Nombres">
+							</div>
+							<div class="form-group col-sm-6">
+								<input type="text" class="form-control form-control-user" th:field="*{apellidos}" placeholder="Apellidos">
+							</div>
+						</div>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<input type="text" class="form-control form-control-user" th:field="*{cedula}" placeholder="C&eacute;dula">
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{identificador}" placeholder="Identificador">
+								<input type="text" class="form-control form-control-user" th:field="*{nacionalidad}" placeholder="Nacionalidad">
 							</div>
 						</div>
+						<h6>Fecha de Nacimiento:</h6>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{nombre}" placeholder="Nombres">
+								<input type="date" class="form-control form-control-user" th:field="*{fechaNacimiento}">
 							</div>
-							<div class="form-group col-sm-6">
-								<input type="text" class="form-control form-control-user" th:field="*{apellido}" placeholder="Apellidos">
-							</div>
-						</div>
-						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<input type="email" class="form-control form-control-user" th:field="*{email}" placeholder="Correo electr&oacute;nico">
+							</div>
+							
+						</div>
+	
+						<h6>Estado Civil:</h6>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<select th:field="*{estadoCivil}" class="form-control form-control-user">
+								    <option th:value="'Casado'" th:text="Casado"></option>
+								    <option th:value="'Soltero'" th:text="Soltero"></option>
+								</select>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<input type="text" class="form-control form-control-user" th:field="*{telefono}" placeholder="Tel&eacute;fono">
 							</div>
 						</div>
-						<h6>Nacimiento:</h6>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="date" class="form-control form-control-user" th:field="*{fechaNacimiento}">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" class="form-control form-control-user" th:field="*{lugarNacimiento}" placeholder="Lugar">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label class="radio-inline"><input type="radio" th:field="*{sexo}" value="M" />&nbsp;Mujer</label>
-							</div>
-							<div class="col-sm-6">
-								<label class="radio-inline"><input type="radio"	th:field="*{sexo}" value="H" />&nbsp;Hombre</label>
-							</div>
-						</div>
+						
+					
 						<hr>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<a th:href="@{/alumno/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+								<a th:href="@{/trabajador/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
 							</div>
 						</div>
-						<input type="hidden" th:field="*{idpersona}" />
+						<input type="hidden" th:field="*{idtrabajador}" />
 					</form>
 				</div>
 			</div>

@@ -29,55 +29,67 @@
 			<div class="col-lg-7">
 				<div class="p-5">
 					<div class="text-center">
-						<h1 th:text="${alumno}" class="h4 text-gray-900 mb-4"></h1>
+						<h1 th:text="${trabajador}" class="h4 text-gray-900 mb-4"></h1>
 					</div>
 					<hr>
+					
 					<div class="form-group row">
+					
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.cedula}"></label>
-						</div>
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.identificador}"></label>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.nombre}"></label>
+						<h6>Nombres:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.nombres}"></label>
 						</div>
 						<div class="form-group col-sm-6">
-							<label class="form-control form-control-user" th:text="${alumno.apellido}"></label>
+						<h6>Apellidos:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.apellidos}"></label>
 						</div>
 					</div>
 					<div class="form-group row">
+						
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.email}"></label>
+							<h6>C&eacute;dula:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.cedula}"></label>
 						</div>
+						
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.telefono}"></label>
+						<h6>Nacionalidad:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.nacionalidad}"></label>
 						</div>
 					</div>
-					<h6>Nacimiento:</h6>
 					<div class="form-group row">
+						
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.fechaNac()}"></label>
+							<h6>Fecha de Nacimiento:</h6>
+				
+							<label class="form-control form-control-user" th:text="${trabajador.fechaNacimiento()}"></label>
 						</div>
 						<div class="col-sm-6">
-							<label class="form-control form-control-user" th:text="${alumno.lugarNacimiento}"></label>
+						<h6>Tel&eacute;fono:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.telefono}"></label>
 						</div>
 					</div>
-					<div class="form-group">
+					
+					<div class="form-group row">
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.sexo}"></label>
+						<h6>Estado Civil:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.estadoCivil}"></label>
+						</div>
+						<div class="col-sm-6 mb-3 mb-sm-0">
+						<h6>Email:</h6>
+							<label class="form-control form-control-user" th:text="${trabajador.email}"></label>
 						</div>
 					</div>
-					<hr>											
+					
+					
+			
+																
 					<h5 class="modal-title">Desea eliminar el registro?</h5>
 					<div class="form-group row">
 						<div class="col-sm-6 mb-3 mb-sm-0">													
-							<a th:href="@{/alumno/delete/} + ${alumno.idpersona}" class="btn btn-success btn-user btn-block">Confirmar</a>
+							<a th:href="@{/trabajador/delete/} + ${trabajador.idtrabajador}" class="btn btn-success btn-user btn-block">Confirmar</a>
 						</div>
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<a th:href="@{/alumno/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+							<a th:href="@{/trabajador/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
 						</div>
 					</div>											
 				</div>

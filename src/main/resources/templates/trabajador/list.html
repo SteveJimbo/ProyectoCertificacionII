@@ -24,22 +24,30 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Nombre</th>
-				<th>Apellido</th>
+				<th>Nombres</th>
+				<th>Apellidos</th>
 				<th>C&eacute;dula</th>
+				<th>Nacionalidad</th>
 				<th>Fec. Nacimiento</th>
-				<th><a class="btn btn-sm btn-success" th:href="@{/alumno/create}">&nbsp;Nuevo</a></th>
+				<th>Tel&eacute;fono</th>
+				<th>E-mail</th>
+				<th>Estado Civil</th>
+				<th><a class="btn btn-sm btn-success" th:href="@{/trabajador/create}">&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="a : ${alumnos}">
-				<td th:text="${a.nombre}"></td>
-				<td th:text="${a.apellido}"></td>
+			<tr th:each="a : ${trabajadores}">
+				<td th:text="${a.nombres}"></td>
+				<td th:text="${a.apellidos}"></td>
 				<td th:text="${a.cedula}"></td>
-				<td th:text="${a.fechaNac()}"></td>
+				<td th:text="${a.nacionalidad}"></td>
+				<td th:text="${a.fechaNacimiento()}"></td>
+				<td th:text="${a.telefono}"></td>
+				<td th:text="${a.email}"></td>
+				<td th:text="${a.estadoCivil}"></td>
 				<td>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/update/} + ${a.idpersona}">&nbsp;Actualizar</a>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/retrieve/} + ${a.idpersona}">&nbsp;Consultar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/trabajador/update/} + ${a.idtrabajador}">&nbsp;Actualizar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/trabajador/retrieve/} + ${a.idtrabajador}">&nbsp;Consultar</a>
 				</td>
 			</tr>
 		</tbody>

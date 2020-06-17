@@ -1,6 +1,8 @@
 package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -14,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="trabajadores")
@@ -39,8 +45,10 @@ public class Trabajador implements Serializable {
 	@Column(name="nacionalidad")
 	private String nacionalidad;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="fecha_nacimiento")
-	private String fechaNacimiento;
+	private Calendar fechaNacimiento;
 	
 	@Column(name="telefono")
 	private String telefono;
@@ -110,11 +118,11 @@ public class Trabajador implements Serializable {
 		this.nacionalidad = nacionalidad;
 	}
 
-	public String getFechaNacimiento() {
+	public Calendar getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
+	public void setFechaNacimiento(Calendar fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -169,6 +177,10 @@ public class Trabajador implements Serializable {
 	@Override
 	public String toString() {
 		return this.getNombres()+ " " + this.getApellidos();
+	}
+	public String fechaNacimiento() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaNacimiento.getTime());
 	}
 	
 	
