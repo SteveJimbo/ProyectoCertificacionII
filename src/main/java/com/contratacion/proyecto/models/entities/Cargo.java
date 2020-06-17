@@ -85,6 +85,13 @@ public class Cargo implements Serializable{
 	public void setTrabajadores(List<Trabajador> trabajadores) {
 		this.trabajadores = trabajadores;
 	}
+
+	@Override
+	public String toString() {
+		return this.getNombre();
+	}
+	
+	
 	
 	
 }

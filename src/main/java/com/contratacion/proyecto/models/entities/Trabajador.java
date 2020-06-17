@@ -165,6 +165,13 @@ public class Trabajador implements Serializable {
 	public void setRoles(List<RolDePago> roles) {
 		this.roles = roles;
 	}
+
+	@Override
+	public String toString() {
+		return this.getNombres()+ " " + this.getApellidos();
+	}
+	
+	
 	
 	
 }

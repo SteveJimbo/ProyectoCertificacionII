@@ -1,6 +1,7 @@
 package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
@@ -12,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="roles_de_pago")
@@ -26,6 +31,8 @@ public class RolDePago implements Serializable{
 	private Integer idrol;
 	
 	@Column(name="fecha_impresion")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Calendar fechaImpresion;
 	
 	@Column(name="total")
@@ -75,6 +82,16 @@ public class RolDePago implements Serializable{
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
+
+	@Override
+	public String toString() {
+		return "Rol De Pago : " + this.fechaImpresion();
+	}
+	public String fechaImpresion() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaImpresion.getTime());
+	}
+	
 	
 	
 }

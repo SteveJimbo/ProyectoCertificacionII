@@ -85,6 +85,11 @@ public class Penalidad implements Serializable{
 	public void setSanciones(List<Sancion> sanciones) {
 		this.sanciones = sanciones;
 	}
+
+	@Override
+	public String toString() {
+		return this.getNombre();
+	}
 	
 	
 }
