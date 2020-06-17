@@ -25,14 +25,14 @@ public class RolDePagoController {
 
 		model.addAttribute("title","Registro de un nuevo Rol De Pago");
 		model.addAttribute("rolDePago", rolDePago);
-		return "rolDePago/form";
+		return "roldepago/form";
 	}
 	
 	@GetMapping(value="/retrieve/{id}")
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		RolDePago rolDePago = srvRolDePago.findById(id);
 		model.addAttribute("rolDePago", rolDePago);
-		return "rolDePago/card";
+		return "roldepago/card";
 	}
 	
 	@GetMapping(value="/update/{id}")
@@ -41,14 +41,14 @@ public class RolDePagoController {
 		model.addAttribute("rolDePago", rolDePago);
 		//el metodo toString se ejecuta por default
 		model.addAttribute("title","Actualizando el registro de: "+ rolDePago.toString());
-		return "rolDePago/form";
+		return "roldepago/form";
 	}
 	
 	@GetMapping(value="/delete/{id}")
 	public String delete(@PathVariable(value="id") Integer id, Model model) {
 		this.srvRolDePago.delete(id);
 		//despues de borrar se hace un redirect a una accion por invocar
-		return "redirect:/rolDePago/list";
+		return "redirect:/roldepago/list";
 	}
 	
 	@GetMapping(value="/list")
@@ -58,12 +58,12 @@ public class RolDePagoController {
 		model.addAttribute("rolesDePago", rolesDePago);
 		
 		model.addAttribute("title","Listado de Roles De Pago");
-		return "rolDePago/list";
+		return "roldepago/list";
 	}
 	
 	@PostMapping(value="/save")
 	public String save(RolDePago rolDePago, Model model) {
 		this.srvRolDePago.save(rolDePago);
-		return "redirect:/rolDePago/list";
+		return "redirect:/roldepago/list";
 	}
 }

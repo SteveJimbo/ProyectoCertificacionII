@@ -29,55 +29,32 @@
 			<div class="col-lg-7">
 				<div class="p-5">
 					<div class="text-center">
-						<h1 th:text="${alumno}" class="h4 text-gray-900 mb-4"></h1>
+						<h1 th:text="${rolDePago}" class="h4 text-gray-900 mb-4"></h1>
 					</div>
 					<hr>
+					
+					
 					<div class="form-group row">
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.cedula}"></label>
+						<h6>Fecha de impresi&oacute;n:</h6>
+							<label class="form-control form-control-user" th:text="${rolDePago.fechaImpresion()}"></label>
 						</div>
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.identificador}"></label>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.nombre}"></label>
-						</div>
-						<div class="form-group col-sm-6">
-							<label class="form-control form-control-user" th:text="${alumno.apellido}"></label>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.email}"></label>
-						</div>
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.telefono}"></label>
-						</div>
-					</div>
-					<h6>Nacimiento:</h6>
-					<div class="form-group row">
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.fechaNac()}"></label>
-						</div>
-						<div class="col-sm-6">
-							<label class="form-control form-control-user" th:text="${alumno.lugarNacimiento}"></label>
-						</div>
+						
 					</div>
 					<div class="form-group">
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<label class="form-control form-control-user" th:text="${alumno.sexo}"></label>
+						<div class="col-sm-6">
+						<h6>Total:</h6>
+							<label class="form-control form-control-user" th:text="${rolDePago.total}"></label>
 						</div>
 					</div>
 					<hr>											
 					<h5 class="modal-title">Desea eliminar el registro?</h5>
 					<div class="form-group row">
 						<div class="col-sm-6 mb-3 mb-sm-0">													
-							<a th:href="@{/alumno/delete/} + ${alumno.idpersona}" class="btn btn-success btn-user btn-block">Confirmar</a>
+							<a th:href="@{/roldepago/delete/} + ${rolDePago.idrol}" class="btn btn-success btn-user btn-block">Confirmar</a>
 						</div>
 						<div class="col-sm-6 mb-3 mb-sm-0">
-							<a th:href="@{/alumno/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+							<a th:href="@{/roldepago/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
 						</div>
 					</div>											
 				</div>
