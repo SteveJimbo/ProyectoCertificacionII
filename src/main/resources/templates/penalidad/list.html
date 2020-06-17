@@ -25,21 +25,19 @@
 		<thead>
 			<tr>
 				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>C&eacute;dula</th>
-				<th>Fec. Nacimiento</th>
-				<th><a class="btn btn-sm btn-success" th:href="@{/alumno/create}">&nbsp;Nuevo</a></th>
+				<th>Descripci&oacute;n</th>
+				<th>Monto</th>
+				<th><a class="btn btn-sm btn-success" th:href="@{/penalidad/create}">&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="a : ${alumnos}">
-				<td th:text="${a.nombre}"></td>
-				<td th:text="${a.apellido}"></td>
-				<td th:text="${a.cedula}"></td>
-				<td th:text="${a.fechaNac()}"></td>
+			<tr th:each="p : ${penalidades}">
+				<td th:text="${p.nombre}"></td>
+				<td th:text="${p.descripcion}"></td>
+				<td th:text="${p.monto}"></td>
 				<td>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/update/} + ${a.idpersona}">&nbsp;Actualizar</a>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/retrieve/} + ${a.idpersona}">&nbsp;Consultar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/penalidad/update/} + ${p.idpenalidad}">&nbsp;Actualizar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/penalidad/retrieve/} + ${p.idpenalidad}">&nbsp;Consultar</a>
 				</td>
 			</tr>
 		</tbody>
