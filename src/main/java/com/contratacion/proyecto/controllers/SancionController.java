@@ -58,7 +58,7 @@ public class SancionController {
 		
 		model.addAttribute("sanciones", sanciones);
 		
-		model.addAttribute("title","Listado de sanciones");
+		model.addAttribute("title","Listado de Sanciones");
 		return "sancion/list";
 	}
 	

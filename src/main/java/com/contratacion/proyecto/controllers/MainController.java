@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/")
 public class MainController {
 
-	@GetMapping(value= {"/","/layout.html"})
+	@GetMapping(value= {"/","/index.html"})
 	public String index(Model model) {
-		return "index";
+		return "layout";
 	}
 }
