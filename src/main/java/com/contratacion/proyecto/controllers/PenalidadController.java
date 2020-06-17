@@ -24,7 +24,7 @@ public class PenalidadController {
 	public String create(Model model) {
 		Penalidad penalidad = new Penalidad();
 
-		model.addAttribute("title","Registro de una nueva Penaldiad");
+		model.addAttribute("title","Registro de una nueva Penalidad");
 		model.addAttribute("penalidad", penalidad);
 		return "penalidad/form";
 	}
@@ -58,7 +58,7 @@ public class PenalidadController {
 		
 		model.addAttribute("penalidades", penalidades);
 		
-		model.addAttribute("title","Listado de penalidades");
+		model.addAttribute("title","Listado de Penalidades");
 		return "penalidad/list";
 	}
 	

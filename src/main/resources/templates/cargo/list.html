@@ -25,21 +25,19 @@
 		<thead>
 			<tr>
 				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>C&eacute;dula</th>
-				<th>Fec. Nacimiento</th>
-				<th><a class="btn btn-sm btn-success" th:href="@{/alumno/create}">&nbsp;Nuevo</a></th>
+				<th>Descripci&oacute;n</th>
+				<th>Sueldo</th>
+				<th><a class="btn btn-sm btn-success" th:href="@{/cargo/create}">&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="a : ${alumnos}">
-				<td th:text="${a.nombre}"></td>
-				<td th:text="${a.apellido}"></td>
-				<td th:text="${a.cedula}"></td>
-				<td th:text="${a.fechaNac()}"></td>
+			<tr th:each="c : ${cargos}">
+				<td th:text="${c.nombre}"></td>
+				<td th:text="${c.descripcion}"></td>
+				<td th:text="${c.sueldo}"></td>
 				<td>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/update/} + ${a.idpersona}">&nbsp;Actualizar</a>
-					<a class="btn btn-sm btn-warning" th:href="@{/alumno/retrieve/} + ${a.idpersona}">&nbsp;Consultar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/cargo/update/} + ${c.idcargo}">&nbsp;Actualizar</a>
+					<a class="btn btn-sm btn-warning" th:href="@{/cargo/retrieve/} + ${c.idcargo}">&nbsp;Consultar</a>
 				</td>
 			</tr>
 		</tbody>
