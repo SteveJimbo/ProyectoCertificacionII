@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.contratacion.proyecto.models.entities.RolDePago;
+import com.contratacion.proyecto.models.entities.Trabajador;
 import com.contratacion.proyecto.models.services.IRolDePagoService;
+import com.contratacion.proyecto.models.services.ITrabajadorService;
 
 @Controller
 @RequestMapping(value="/roldepago")
@@ -19,12 +21,16 @@ public class RolDePagoController {
 	@Autowired
 	private IRolDePagoService srvRolDePago;
 	
+	@Autowired
+	private ITrabajadorService srvTrabajador;
+	
 	@GetMapping(value="/create")
 	public String create(Model model) {
 		RolDePago rolDePago= new RolDePago();
-
+		List<Trabajador> trabajadores = srvTrabajador.findAll();
 		model.addAttribute("title","Registro de un nuevo Rol De Pago");
 		model.addAttribute("rolDePago", rolDePago);
+		model.addAttribute("trabajadores", trabajadores);
 		return "roldepago/form";
 	}
 	

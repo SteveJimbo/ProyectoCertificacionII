@@ -33,25 +33,20 @@
 					</div>
 					<form class="user" th:action="@{/roldepago/save}" th:object="${rolDePago}" method="post">
 						<hr>
-						
-						
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-							<h6>Fecha de impresi&oacute;n:</h6>
-								<input type="date" class="form-control form-control-user" th:field="*{fechaImpresion}">
+							<h6>Trabajador:</h6>
+								<select th:field="*{trabajador.idtrabajador}" class="mi-selector form-control">
+									<option value=0>-- Seleccione El Trabajador--</option>
+									<option th:each="t : ${trabajadores}" th:value="${t.idtrabajador}" th:text="${t}"></option>
+								</select>
 							</div>
 							
-						</div>
-						<div class="form-group">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-							<h6>Total:</h6>
-								<input type="number" class="form-control form-control-user" th:field="*{total}">
-							</div>
 						</div>
 						<hr>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
+								<input type="submit" class="btn btn-success btn-user btn-block" value="Generar" />
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<a th:href="@{/roldepago/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
