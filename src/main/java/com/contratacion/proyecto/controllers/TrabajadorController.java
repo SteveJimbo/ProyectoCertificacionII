@@ -38,8 +38,7 @@ public class TrabajadorController {
 	@GetMapping(value="/retrieve/{id}")
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		Trabajador trabajador = srvTrabajador.findById(id);
-		
-		model.addAttribute("cargos", cargos);
+		model.addAttribute("trabajador", trabajador);
 		return "trabajador/card";
 	}
 	
@@ -48,7 +47,7 @@ public class TrabajadorController {
 		Trabajador trabajador = srvTrabajador.findById(id);
 		List<Cargo> cargos = srvCargo.findAll();
 		model.addAttribute("trabajador", trabajador);
-		model.addAttribute("trabajador", trabajador);
+		model.addAttribute("cargos", cargos);
 		model.addAttribute("title","Actualizando el registro de: "+ trabajador.toString());
 		return "trabajador/form";
 	}
