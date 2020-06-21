@@ -25,12 +25,16 @@
 		<thead>
 			<tr>
 				<th>Fec. Incidencia</th>
+				<th>Penalidad</th>
+				<th>Trabajador</th>
 				<th><a class="btn btn-sm btn-success" th:href="@{/sancion/create}">&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="a : ${sanciones}">
-				<td th:text="${a.fecha()}"></td>
+			<tr th:each="s : ${sanciones}">
+				<td th:text="${s.fecha()}"></td>
+				<td th:text="${s.penalidad}"></td>
+				<td th:text="${s.trabajador}"></td>
 				<td>
 					<a class="btn btn-sm btn-warning" th:href="@{/sancion/update/} + ${a.idsancion}">&nbsp;Actualizar</a>
 					<a class="btn btn-sm btn-warning" th:href="@{/sancion/retrieve/} + ${a.idsancion}">&nbsp;Consultar</a>

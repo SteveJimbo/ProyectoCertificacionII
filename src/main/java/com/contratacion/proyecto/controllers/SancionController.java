@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.contratacion.proyecto.models.entities.Penalidad;
 import com.contratacion.proyecto.models.entities.Sancion;
+import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.services.IPenalidadService;
 import com.contratacion.proyecto.models.services.ISancionService;
+import com.contratacion.proyecto.models.services.ITrabajadorService;
 
 @Controller
 @RequestMapping(value="/sancion")
@@ -20,10 +24,22 @@ public class SancionController {
 	@Autowired
 	private ISancionService srvSancion;
 	
+	@Autowired
+	private IPenalidadService srvPenalidad;
+	
+	@Autowired
+	private ITrabajadorService srvTrabajador;
+	
 	@GetMapping(value="/create")
 	public String create(Model model) {
 		Sancion sancion = new Sancion();
 
+		List<Trabajador> trabajadores = srvTrabajador.findAll();
+		model.addAttribute("trabajadores", trabajadores);
+		
+		List<Penalidad> penalidades = srvPenalidad.findAll();
+		model.addAttribute("penalidades", penalidades);
+		
 		model.addAttribute("title","Registro de una nueva Sanción");
 		model.addAttribute("sancion", sancion);
 		return "sancion/form";
@@ -39,6 +55,13 @@ public class SancionController {
 	@GetMapping(value="/update/{id}")
 	public String update(@PathVariable(value="id") Integer id, Model model) {
 		Sancion sancion = srvSancion.findById(id);
+		
+		List<Trabajador> trabajadores = srvTrabajador.findAll();
+		model.addAttribute("trabajadores", trabajadores);
+		
+		List<Penalidad> penalidades = srvPenalidad.findAll();
+		model.addAttribute("penalidades", penalidades);
+		
 		model.addAttribute("sancion", sancion);
 		//el metodo toString se ejecuta por default
 		model.addAttribute("title","Actualizando el registro de: "+ sancion.toString());

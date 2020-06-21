@@ -176,7 +176,7 @@ public class Trabajador implements Serializable {
 
 	@Override
 	public String toString() {
-		return this.getNombres()+ " " + this.getApellidos();
+		return this.idtrabajador + " - " +  this.getNombres()+ " " + this.getApellidos();
 	}
 	public String fechaNacimiento() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
