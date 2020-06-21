@@ -63,7 +63,8 @@
 						<h6>Estado Civil:</h6>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<select th:field="*{estadoCivil}" class="form-control form-control-user">
+								<select th:field="*{estadoCivil}" class="form-control">
+									<option value="0" >Seleccionar</option>
 								    <option th:value="'Casado'" th:text="Casado"></option>
 								    <option th:value="'Soltero'" th:text="Soltero"></option>
 								</select>
@@ -72,7 +73,15 @@
 								<input type="text" class="form-control form-control-user" th:field="*{telefono}" placeholder="Tel&eacute;fono">
 							</div>
 						</div>
-						
+						<h6>Cargo:</h6>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<select th:field="*{cargo}" class="form-control">
+									<option value="0" >Seleccionar</option>
+								    <option th:each="c : ${cargos}" th:value="${c.idcargo}" th:text="${c.nombre}"></option>
+								</select>
+							</div>
+						</div>
 					
 						<hr>
 						<div class="form-group row">
