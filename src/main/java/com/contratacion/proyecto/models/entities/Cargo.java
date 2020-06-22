@@ -32,7 +32,7 @@ public class Cargo implements Serializable{
 	private String descripcion;
 	
 	@Column(name="sueldo")
-	private String sueldo;
+	private Float sueldo;
 	
 	@OneToMany(mappedBy="cargo", fetch=FetchType.LAZY)
 	private List<Trabajador> trabajadores;
@@ -70,11 +70,11 @@ public class Cargo implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public String getSueldo() {
+	public Float getSueldo() {
 		return sueldo;
 	}
 
-	public void setSueldo(String sueldo) {
+	public void setSueldo(Float sueldo) {
 		this.sueldo = sueldo;
 	}
 

@@ -55,9 +55,7 @@ public class PenalidadController {
 	@GetMapping(value="/list")
 	public String list(Model model) {
 		List<Penalidad> penalidades = this.srvPenalidad.findAll();
-		
 		model.addAttribute("penalidades", penalidades);
-		
 		model.addAttribute("title","Listado de Penalidades");
 		return "penalidad/list";
 	}

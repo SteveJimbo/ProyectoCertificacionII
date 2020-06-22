@@ -9,4 +9,5 @@ public interface ISancionService {
 	public Sancion findById(Integer id);
 	public void delete(Integer id);
 	public List<Sancion> findAll();
+	public List<Sancion> findAll(Integer id);
 }

@@ -1,5 +1,6 @@
 package com.contratacion.proyecto.models.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,18 @@ public class SancionService implements ISancionService{
 	@Transactional
 	public List<Sancion> findAll() {
 		return (List<Sancion>) dao.findAll();
+	}
+
+	@Override
+	@Transactional
+	public List<Sancion> findAll(Integer id) {
+		List<Sancion> especificas = new ArrayList<Sancion>();
+		List<Sancion> sanciones = (List<Sancion>) dao.findAll();
+		for(Sancion s: sanciones) {
+			if(s.getTrabajador().getIdtrabajador() == id) {
+				especificas.add(s);
+			}
+		}
+		return especificas;
 	}
 }

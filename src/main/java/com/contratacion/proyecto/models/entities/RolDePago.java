@@ -3,6 +3,7 @@ package com.contratacion.proyecto.models.entities;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -92,6 +93,18 @@ public class RolDePago implements Serializable{
 		return sdf.format(fechaImpresion.getTime());
 	}
 	
-	
-	
+	public void calcularTotal(List<Penalidad> p) {
+		this.total = this.trabajador.getCargo().getSueldo();
+		this.total -= total*0.206f;
+		if(this.trabajador.getSanciones().size()>0) {
+			for(Sancion s : this.trabajador.getSanciones()) {
+				for(Penalidad pe : p) {
+					if(s.getPenalidad().getIdpenalidad() == pe.getIdpenalidad()) {
+						this.total -= pe.getMonto();
+					}
+				}
+			}
+		}
+		this.fechaImpresion = Calendar.getInstance();	
+	}
 }
