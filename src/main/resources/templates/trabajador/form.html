@@ -2,114 +2,123 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: frgHead"></head>
 
-<body id="page-top">
+<body class="hold-transition sidebar-mini layout-fixed">
 
-<!-- Page Wrapper -->
-<div id="wrapper">
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
 <div th:replace="layout :: frgSidebar"></div>
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
-<!-- Main Content -->
-<div id="content">
-<div th:replace="layout :: frgTopBar"></div>
-<!-- Begin Page Content -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
 <div class="container-fluid">
-<!--$$$ TITULO $$$-->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
-</div>
-<!-- Content Row -->
-<div class="container">
+<!-- Main row -->
+<div class="row">
 <!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
 
-<div class="card o-hidden border-0 shadow-lg my-5">
-	<div class="card-body p-0">
-		<!-- Nested Row within Card Body -->
-		<div class="row">
-			<div class="col-lg-7">
-				<div class="p-5">
-					<div class="text-center">
-						<h1 th:text="${title}" class="h4 text-gray-900 mb-4"></h1>
-					</div>
-					<form class="user" th:action="@{/trabajador/save}" th:object="${trabajador}" method="post">
-						<hr>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{nombres}" placeholder="Nombres">
-							</div>
-							<div class="form-group col-sm-6">
-								<input type="text" class="form-control form-control-user" th:field="*{apellidos}" placeholder="Apellidos">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{cedula}" placeholder="C&eacute;dula">
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{nacionalidad}" placeholder="Nacionalidad">
-							</div>
-						</div>
-						<h6>Fecha de Nacimiento:</h6>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="date" class="form-control form-control-user" th:field="*{fechaNacimiento}">
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="email" class="form-control form-control-user" th:field="*{email}" placeholder="Correo electr&oacute;nico">
-							</div>
-							
-						</div>
-	
-						<h6>Estado Civil:</h6>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<select th:field="*{estadoCivil}" class="form-control">
-									<option value="0" >Seleccionar</option>
-								    <option th:value="'Casado'" th:text="Casado"></option>
-								    <option th:value="'Soltero'" th:text="Soltero"></option>
-								</select>
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="text" class="form-control form-control-user" th:field="*{telefono}" placeholder="Tel&eacute;fono">
-							</div>
-						</div>
-						<h6>Cargo:</h6>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<select th:field="*{cargo}" class="form-control">
-									<option value="0" >Seleccionar</option>
-								    <option th:each="c : ${cargos}" th:value="${c.idcargo}" th:text="${c.nombre}"></option>
-								</select>
-							</div>
-						</div>
-					
-						<hr>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<a th:href="@{/trabajador/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
-							</div>
-						</div>
-						<input type="hidden" th:field="*{idtrabajador}" />
-					</form>
-				</div>
-			</div>
+<div class="col-md-6">
+	<div class="card card-info">
+		<div class="card-header">
+			<h3 class="card-title">Ingrese los datos</h3>
 		</div>
+		<form role="form" class="user" th:action="@{/trabajador/save}" th:object="${trabajador}" method="post">
+			<div class="card-body">
+				<label for="nombres">Nombres</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{nombres}" placeholder="Nombres">
+				</div>
+				<label for="nombres">Apellidos</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{apellidos}" placeholder="Apellidos">
+				</div>
+				<label for="nombres">C&eacute;dula</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{cedula}" placeholder="C&eacute;dula">
+				</div>
+				<label for="nombres">Nacionalidad</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{nacionalidad}" placeholder="Nacionalidad">
+				</div>
+				<label for="nombres">Fec. Nacimiento</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input type="date" class="form-control form-control-user" th:field="*{fechaNacimiento}">
+				</div>
+				<label for="nombres">Tel&eacute;fono</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">123</span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{telefono}">
+				</div>
+				<label for="nombres">Email</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">@</span>
+					</div>
+					<input type="email" class="form-control form-control-user" th:field="*{email}" placeholder="Correo electr&oacute;nico">
+				</div>
+				<label for="nombres">Estado Civil</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<select th:field="*{estadoCivil}" class="form-control">
+						<option value="0" >Seleccionar</option>
+						<option th:value="'Casado'" th:text="Casado"></option>
+						<option th:value="'Soltero'" th:text="Soltero"></option>
+					</select>
+				</div>
+				<label for="nombres">Cargo</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<select th:field="*{cargo}" class="form-control">
+						<option value="0" >Seleccionar</option>
+						<option th:each="c : ${cargos}" th:value="${c.idcargo}" th:text="${c.nombre}"></option>
+					</select>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-6 mb-3 mb-sm-0">
+						<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
+					</div>
+					<div class="col-sm-6 mb-3 mb-sm-0">
+						<a th:href="@{/trabajador/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+					</div>
+					</div>
+				</div>
+				<input type="hidden" th:field="*{idtrabajador}" />
+			</form>
 	</div>
 </div>
 
 </div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
-<!-- /.container-fluid -->
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
 </div>
-<!-- End of Main Content -->
-<div th:replace="layout :: frgFooter"></div>
-</div>
-<!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
-<div th:replace="layout :: frgPageTop"></div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+
 </body>
 </html>
