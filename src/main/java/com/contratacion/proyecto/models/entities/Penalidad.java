@@ -88,7 +88,7 @@ public class Penalidad implements Serializable{
 
 	@Override
 	public String toString() {
-		return this.getNombre();
+		return ""+nombre+" - "+descripcion;
 	}
 	
 	

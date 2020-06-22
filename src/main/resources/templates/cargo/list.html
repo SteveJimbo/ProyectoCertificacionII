@@ -15,15 +15,17 @@
 <div class="container-fluid">
 <!-- Main row -->
 <div class="row">
+<div class="card col-12">
 
 <!-- CONTENIDO CONTENIDO CONETENIDO CONTENIDO CONTENIDO -->
-	<table class="table table-hover">
+	<table id="tabla" class="table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>Nombre</th>
 				<th>Descripci&oacute;n</th>
 				<th>Sueldo</th>
-				<th><a class="btn btn-sm btn-success" th:href="@{/cargo/create}">&nbsp;Nuevo</a></th>
+				<th><a class="btn btn-success btn-sm" th:href="@{/cargo/create}">
+				<i class="fas fa-edit"></i>&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,13 +34,16 @@
 				<td th:text="${c.descripcion}"></td>
 				<td th:text="${c.sueldo}"></td>
 				<td>
-					<a class="btn btn-sm btn-warning" th:href="@{/cargo/update/} + ${c.idcargo}">&nbsp;Actualizar</a>
-					<a class="btn btn-sm btn-warning" th:href="@{/cargo/retrieve/} + ${c.idcargo}">&nbsp;Consultar</a>
+					<a class="btn btn-info btn-sm" th:href="@{/cargo/update/} + ${c.idcargo}">
+					<i class="fas fa-pencil-alt"></i>&nbsp;Actualizar</a>
+					<a class="btn btn-primary btn-sm" th:href="@{/cargo/retrieve/} + ${c.idcargo}">
+					<i class="fas fa-eye"></i>&nbsp;Consultar</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
+      
+</div>
 </div>
 <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
@@ -50,6 +55,18 @@
 </div>
 <!-- ./wrapper -->	
 <div th:replace="layout :: frgScripts"></div>
-
+<script>
+  $(function () {
+    $('#tabla').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 </body>
 </html>

@@ -30,8 +30,10 @@
   <!-- summernote -->
   <link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.css}">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">	
-  
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- DataTables -->
+  <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
 </head>
 
 
@@ -65,7 +67,7 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
-            <div class="media">
+            <div class="media" >
               <img th:src="@{/dist/img/user1-128x128.jpg}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
@@ -185,59 +187,43 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item has-treeview menu-open">
-            <a th:href="@{/index.html}" class="nav-link active">
+            <a id="apag" th:href="@{/index.html}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>P&aacute;gina Principal</p>
+            </a>
+          </li>
+          
+          <li class="nav-item has-treeview menu-open">
+            <a id="atbr" th:href="@{/trabajador/list}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>Trabajadores</p>
+            </a>
+          </li>
+          
+          <li class="nav-item has-treeview menu-open">
+            <a id="ardp" th:href="@{/roldepago/list}" class="nav-link">
+              <i class="nav-icon fas fa-clipboard"></i>
+              <p>Rol De Pago</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a id="asan" th:href="@{/sancion/list}" class="nav-link">
+              <i class="nav-icon fas fa-exclamation-triangle"></i>
               <p>
-                P&aacute;gina Principal
-                <i class="right fas"></i>
-              </p>
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a th:href="@{/trabajador/list}" class="nav-link">
-              <ion-icon name="body-outline"></ion-icon>
-              <p>&nbsp;&nbsp;&nbsp;
-                Trabajadores
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          
-          <li class="nav-item has-treeview">
-            <a th:href="@{/roldepago/list}" class="nav-link">
-              <ion-icon name="reader-outline"></ion-icon>
-              <p>&nbsp;&nbsp;&nbsp;
-                Rol De Pago
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a th:href="@{/sancion/list}" class="nav-link">
-              <ion-icon name="sad-outline"></ion-icon>
-              <p>&nbsp;&nbsp;&nbsp;
                 Sanciones
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a th:href="@{/penalidad/list}" class="nav-link">
-              <ion-icon name="skull-outline"></ion-icon>
-              <p>&nbsp;&nbsp;&nbsp;
-                Penalidades
-                <i class="fas fa-angle-left right"></i>
-              </p>
+          <li class="nav-item has-treeview menu-open">
+            <a id="apen" th:href="@{/penalidad/list}" class="nav-link">
+              <i class="nav-icon fas fa-skull"></i>
+              <p>Penalidades</p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a th:href="@{/cargo/list}" class="nav-link">
-              <ion-icon name="ribbon-outline"></ion-icon>
-              <p>&nbsp;&nbsp;&nbsp;
-                Cargos
-                <i class="fas fa-angle-left right"></i>
-              </p>
+          <li class="nav-item has-treeview menu-open">
+            <a id="acar" th:href="@{/cargo/list}" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>Cargos</p>
             </a>
           </li>
         </ul>
@@ -298,6 +284,8 @@
 <div th:fragment="frgScripts">
 <!-- jQuery -->
 <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Deteccion -->
+<script th:src="@{/dist/js/deteccion.js}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -330,8 +318,14 @@
 <script th:src="@{/dist/js/pages/dashboard.js}"></script>
 <!-- AdminLTE for demo purposes -->
 <script th:src="@{/dist/js/demo.js}"></script>
-<!-- Iconos Chidos -->
-<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- DataTables -->
+<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+
 </div>
 
 </body>
