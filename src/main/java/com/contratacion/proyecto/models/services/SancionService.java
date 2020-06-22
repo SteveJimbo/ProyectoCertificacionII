@@ -38,4 +38,6 @@ public class SancionService implements ISancionService{
 	public List<Sancion> findAll() {
 		return (List<Sancion>) dao.findAll();
 	}
+
+
 }
