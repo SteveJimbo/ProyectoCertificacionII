@@ -33,8 +33,8 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fas fa-check"></i> </span>
 					</div>
-					<select th:field="*{penalidad.idpenalidad}" class="form-control select2 select2-danger select2-hidden-accessible">
-						<option value=0>-- Seleccione --</option>
+					<select th:field="*{penalidad.idpenalidad}" class="form-control select2bs4">
+						<option value=0>-- Seleccione Penalidad --</option>
 						<option th:each="pen : ${penalidades}" th:value="${pen.idpenalidad}" th:text="${pen}"></option>
 					</select>
 				</div>
@@ -43,8 +43,8 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fas fa-check"></i> </span>
 					</div>
-					<select th:field="*{trabajador.idtrabajador}" class="form-control select2 select2-danger select2-hidden-accessible">
-						<option value=0>-- Seleccione --</option>
+					<select th:field="*{trabajador.idtrabajador}" class="form-control select2bs4" >
+						<option value=0>-- Seleccione Trabajador --</option>
 						<option th:each="tra : ${trabajadores}" th:value="${tra.idtrabajador}" th:text="${tra}"></option>
 					</select>
 				</div>
@@ -77,6 +77,14 @@
 </div>
 <!-- ./wrapper -->	
 <div th:replace="layout :: frgScripts"></div>
-
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  })
+</script>
 </body>
 </html>

@@ -29,8 +29,8 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fas fa-check"></i> </span>
 					</div>
-					<select th:field="*{trabajador.idtrabajador}" class="form-control select2 select2-danger select2-hidden-accessible mi-selector" >
-						<option value=0>-- Seleccione El Trabajador--</option>
+					<select th:field="*{trabajador.idtrabajador}" class="form-control select2bs4" >
+						<option value=0>-- Seleccione Trabajador --</option>
 						<option th:each="t : ${trabajadores}" th:value="${t.idtrabajador}" th:text="${t}"></option>
 					</select>
 				</div>							
@@ -61,6 +61,13 @@
 </div>
 <!-- ./wrapper -->	
 <div th:replace="layout :: frgScripts"></div>
-
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  })
+</script>
 </body>
 </html>
