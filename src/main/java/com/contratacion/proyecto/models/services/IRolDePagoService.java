@@ -9,4 +9,5 @@ public interface IRolDePagoService {
 	public RolDePago findById(Integer id);
 	public void delete(Integer id);
 	public List<RolDePago> findAll();
+	public Integer findLast();
 }

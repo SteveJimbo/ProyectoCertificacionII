@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
 		var pathname = window.location.pathname;
 		var real = pathname.split("/");
 		
-		if(real[1] == "index.html")
+		if(real[1] == "index.html" || real[1] == "")
 			$('#apag').addClass('active');
 		if(real[1] == "trabajador")
 			$('#atbr').addClass('active');	

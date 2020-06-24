@@ -2,77 +2,125 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: frgHead"></head>
 
-<body id="page-top">
+<body class="hold-transition sidebar-mini layout-fixed">
 
-<!-- Page Wrapper -->
-<div id="wrapper">
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
 <div th:replace="layout :: frgSidebar"></div>
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
-<!-- Main Content -->
-<div id="content">
-<div th:replace="layout :: frgTopBar"></div>
-<!-- Begin Page Content -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
 <div class="container-fluid">
-<!--$$$ TITULO $$$-->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
-</div>
-<!-- Content Row -->
-<div class="container">
+<!-- Main row -->
+<div class="row">
+<!-- Main content -->
+            <div class="invoice p-3 mb-3">
+              <!-- title row -->
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-globe"></i> SISCON - Rol De Pago # <label style="font-weight:normal" th:text="${rolDePago.idrol}"></label>
+                    <small class="float-right">Fecha: <label style="font-weight:normal" th:text="${rolDePago.fechaImpresion()}"></label></small>
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- info row -->
+              <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                  <address>
+                    <strong>SISCON</strong><br>
+                    El Coraz&oacute;n E1-80 y Salcedo<br>
+                    Quito, Pichincha<br>
+                    Tel&eacute;fono: 02-3122108<br>
+                    Email: ldmartinez3@espe.edu.ec
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  <address>
+                    <strong><label style="display:inline;" th:text="${trabajador}" ></label></strong><br>
+                    <b>C&eacute;dula: </b><label style="font-weight:normal;display:inline;" th:text="${trabajador.cedula}"></label><br>
+                    <b>Cargo:</b> <label style="font-weight:normal;display:inline;" th:text="${trabajador.cargo}"></label><br>
+                    <strong>Tel&eacute;fono:</strong> <label style="font-weight:normal;display:inline;" th:text="${trabajador.telefono}"></label><br>
+                    <strong>Email:</strong> <label style="font-weight:normal" th:text="${trabajador.email}"></label>
+                  </address>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
 
-<!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
-<div class="card o-hidden border-0 shadow-lg my-5">
-	<div class="card-body p-0">
-		<!-- Nested Row within Card Body -->
-		<div class="row">
-			<div class="col-lg-7">
-				<div class="p-5">
-					<div class="text-center">
-						<h1 th:text="${rolDePago}" class="h4 text-gray-900 mb-4"></h1>
-					</div>
-					<hr>
-					
-					
-					<div class="form-group row">
-						<div class="col-sm-6 mb-3 mb-sm-0">
-						<h6>Fecha de impresi&oacute;n:</h6>
-							<label class="form-control form-control-user" th:text="${rolDePago.fechaImpresion()}"></label>
-						</div>
-						
-					</div>
-					<div class="form-group">
-						<div class="col-sm-6">
-						<h6>Total:</h6>
-							<label class="form-control form-control-user" th:text="${rolDePago.total}"></label>
-						</div>
-					</div>
-					<hr>											
-					<h5 class="modal-title">Desea eliminar el registro?</h5>
-					<div class="form-group row">
-						<div class="col-sm-6 mb-3 mb-sm-0">													
-							<a th:href="@{/roldepago/delete/} + ${rolDePago.idrol}" class="btn btn-success btn-user btn-block">Confirmar</a>
-						</div>
-						<div class="col-sm-6 mb-3 mb-sm-0">
-							<a th:href="@{/roldepago/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
-						</div>
-					</div>											
-				</div>
-			</div>
-		</div>
-	</div>
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th width="81.5%">Descripci&oacute;n</th>
+                      <th>Monto</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>Sueldo Mensual</td>
+                      <td th:text="'$ '+${rolDePago.total}"></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-6">
+                  <p class="lead">Bancos Participantes:</p>
+                  <img th:src="@{/dist/img/credit/banco_pichincha.jpg}" alt="BancoPichincha" width="20%">&nbsp;&nbsp;
+                  <img th:src="@{/dist/img/credit/banco_pacifico.png}" alt="BancoPacifico" width="20%">&nbsp;&nbsp;
+                  <img th:src="@{/dist/img/credit/banco_austro.gif}" alt="BancoAustro" width="12%">
+
+                  <p class="text-muted well well-sm shadow-none" style="margin-top: 1px;">
+					Recuerda acudir a cualquiera de nuestros bancos participantes.
+                  </p>
+                </div>
+                <!-- /.col -->
+                <div class="col-6">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th>Total a Pagar:</th>
+                        <td th:text="'$ '+${rolDePago.total}"></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <!-- this row will not appear when printing -->
+              <div class="row no-print">
+                <div class="col-12">
+                  <a onClick="window.print()" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                  <a th:href="@{/roldepago/list}" class="btn btn-success float-right"><i class="fas fa-angle-left"></i> Regresar
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- /.invoice -->
 </div>
-						
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
 </div>
-<!-- /.container-fluid -->
-</div>
-<!-- End of Main Content -->
-<div th:replace="layout :: frgFooter"></div>
-</div>
-<!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
-<div th:replace="layout :: frgPageTop"></div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
 </body>
 </html>

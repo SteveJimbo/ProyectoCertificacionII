@@ -50,7 +50,9 @@ public class RolDePagoController {
 	@GetMapping(value="/retrieve/{id}")
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		RolDePago rolDePago = srvRolDePago.findById(id);
+		Trabajador trabajador = srvTrabajador.findById(rolDePago.getTrabajador().getIdtrabajador());
 		model.addAttribute("rolDePago", rolDePago);
+		model.addAttribute("trabajador", trabajador);
 		return "roldepago/card";
 	}
 	
@@ -86,6 +88,7 @@ public class RolDePagoController {
 		List<Penalidad> p = srvPenalidad.findAll();
 		rolDePago.calcularTotal(p);
 		this.srvRolDePago.save(rolDePago);
-		return "redirect:/roldepago/list";
+		Integer id = srvRolDePago.findLast();
+		return "redirect:/roldepago/retrieve/"+id;
 	}
 }

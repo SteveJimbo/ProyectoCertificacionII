@@ -29,7 +29,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fas fa-check"></i> </span>
 					</div>
-					<select th:field="*{trabajador.idtrabajador}" class="form-control select2 select2-danger select2-hidden-accessible" >
+					<select th:field="*{trabajador.idtrabajador}" class="form-control select2 select2-danger select2-hidden-accessible mi-selector" >
 						<option value=0>-- Seleccione El Trabajador--</option>
 						<option th:each="t : ${trabajadores}" th:value="${t.idtrabajador}" th:text="${t}"></option>
 					</select>

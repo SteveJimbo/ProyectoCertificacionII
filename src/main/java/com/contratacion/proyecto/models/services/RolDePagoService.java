@@ -37,4 +37,12 @@ public class RolDePagoService implements IRolDePagoService{
 	public List<RolDePago> findAll() {
 		return (List<RolDePago>) dao.findAll();
 	}
+
+	@Override
+	@Transactional
+	public Integer findLast() {
+		List<RolDePago> roles = (List<RolDePago>) dao.findAll();
+		RolDePago rol = roles.get(roles.size()-1);
+		return rol.getIdrol();
+	}
 }
