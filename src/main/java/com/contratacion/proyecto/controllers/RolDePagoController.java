@@ -88,7 +88,6 @@ public class RolDePagoController {
 		List<Penalidad> p = srvPenalidad.findAll();
 		rolDePago.calcularTotal(p);
 		this.srvRolDePago.save(rolDePago);
-		Integer id = srvRolDePago.findLast();
-		return "redirect:/roldepago/retrieve/"+id;
+		return "redirect:/roldepago/retrieve/"+srvRolDePago.findLast();
 	}
 }
