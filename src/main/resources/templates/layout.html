@@ -199,10 +199,9 @@
         	</ul>
       	</nav><br>
 		
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <!-- Sidebar Menu PARA ADMINISTRADOR -->
+      <nav class="mt-2" sec:authorize="hasRole('ROLE_ADMIN')">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          
           <li class="nav-item has-treeview menu-open">
             <a id="apag" th:href="@{/sistema.html}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -244,7 +243,31 @@
         </ul>
       </nav>
       
-      
+      <!-- Sidebar Menu PARA SUPERVISOR -->
+      <nav class="mt-2" sec:authorize="hasRole('ROLE_SUP')">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item has-treeview menu-open">
+            <a id="apag" th:href="@{/sistema.html}" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>P&aacute;gina Principal</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a id="ardp" th:href="@{/roldepago/list}" class="nav-link">
+              <i class="nav-icon fas fa-clipboard"></i>
+              <p>Rol De Pago</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a id="asan" th:href="@{/sancion/list}" class="nav-link">
+              <i class="nav-icon fas fa-exclamation-triangle"></i>
+              <p>
+                Sanciones
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
       
       <!-- /.sidebar-menu -->
     </div>
