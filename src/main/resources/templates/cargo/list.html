@@ -35,9 +35,10 @@
 				<td th:text="${c.sueldo}"></td>
 				<td>
 					<a class="btn btn-info btn-sm" th:href="@{/cargo/update/} + ${c.idcargo}">
-					<i class="fas fa-pencil-alt"></i>&nbsp;Actualizar</a>
+					<i class="fas fa-pencil-alt"></i>&nbsp;</a>
 					<a class="btn btn-primary btn-sm" th:href="@{/cargo/retrieve/} + ${c.idcargo}">
-					<i class="fas fa-eye"></i>&nbsp;Consultar</a>
+					<i class="fas fa-eye"></i>&nbsp;</a>
+					<button class="btn btn-danger btn-sm btnDelete" th:value="${c.idcargo}"><i class="fas fa-trash"></i></button>
 				</td>
 			</tr>
 		</tbody>
@@ -68,5 +69,6 @@
     });
   });
 </script>
+<script th:src="@{/js/cargo/delete.js}"></script>
 </body>
 </html>
