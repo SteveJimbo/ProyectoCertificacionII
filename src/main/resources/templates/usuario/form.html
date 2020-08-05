@@ -68,8 +68,21 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          
+        <div class="input-group mb-3">
+        	<select class="form-control" th:name="rol">
+        	<option value="0" >-- Seleccionar Rol --</option>
+        	<option value="SUP" >Supervisor</option>
+        	<option value="ADMIN" >Administrador</option>
+        	</select>      
+         
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="far fa-dot-circle"></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">  
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-success btn-block">Guardar</button>
