@@ -38,6 +38,8 @@ public class UsuarioController {
 	
 	@PostMapping(value="/save")
 	public String save(@Validated Usuario usuario, @RequestParam(value = "rol") String rol, BindingResult result, Model model, RedirectAttributes flash) {
+		int i = 0;
+		
 		try {
 			String role = "ROLE_" + rol; 
 			if(result.hasErrors())

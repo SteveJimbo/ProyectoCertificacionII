@@ -33,11 +33,13 @@ public class Usuario implements Serializable{
 	
 	@Column(name="nombres")
 	@NotEmpty
+	@Size(min=4)
 	private String nombres;
 	
 	
 	@Column(name="apellidos")
 	@NotEmpty
+	@Size(min=4)
 	private String apellidos;
 	
 	

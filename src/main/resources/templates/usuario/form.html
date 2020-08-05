@@ -107,6 +107,37 @@
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
+<div class="row">
+			<div class="col-12">
+				<div id="success-alert" th:if="${success != null}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var message = /*[[${success}]]*/
+						Swal.fire({
+							title : '¡Correcto!',
+							text : message,
+							icon : 'success',
+							button : 'Aceptar'
+						})
+						/*]]>*/
+					</script>
+				</div>
+				<div id="error-alert" th:if="${error != null}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var message = /*[[${error}]]*/
+						Swal.fire({
+							title : '¡Error!',
+							text : message,
+							icon : 'error',
+							button : 'Aceptar'
+						})
+						/*]]>*/
+					</script>
+				</div>
+
+			</div>
+		</div>
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
