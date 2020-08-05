@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout :: frgHead"></head>
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" th:style="'background-image:url(' + @{/inicio/assets/img/ciudad.jpg} + ');'">
 <div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>Registrarse</b></a>
-  </div>
-  <div class="card">
+  
+  <div class="card info-box">
     <div class="card-body register-card-body">
+    <div class="register-logo">
+	    <b>Registrarse</b>
+	  </div>
       <p class="login-box-msg">A continuaci&oacute;n ingrese sus datos</p>
 
       <form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
@@ -21,7 +22,7 @@
           		th:errors="*{nombres}"></small>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-user"></span>
+              <span class="fas fa-font"></span>
             </div>
           </div>
         </div>
@@ -35,7 +36,7 @@
           th:errors="*{apellidos}"></small>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-font"></span>
             </div>
           </div>
         </div>
@@ -49,7 +50,7 @@
 			th:errors="*{nombre}"></small>          
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
@@ -63,7 +64,7 @@
          
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-key"></span>
             </div>
           </div>
         </div>
@@ -71,16 +72,23 @@
           
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Guardar</button>
-            <a th:href="@{/}" class="btn btn-sm academy-btn btn-2 ml-2"><i class="fas fa-times"></i> &nbsp;Cancelar</a>
+            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+          </div>
+          <div class="col-4">
+            <a th:href="@{/}" class="btn btn-danger btn-blobk">Cancelar</a>
           </div>
           <!-- /.col -->
         </div>
+        <div class="row justify-content-center">
+       		<a th:href="@{/login}" class="">Ya tengo una cuenta</a>
+       		
+        </div>
+        
       </form>
 
       
 
-      <a th:href="@{/login}" class="text-center">Ya tengo una cuenta</a>
+      
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
