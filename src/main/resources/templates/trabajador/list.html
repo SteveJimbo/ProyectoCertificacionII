@@ -29,6 +29,7 @@
 				<th>Tel&eacute;fono</th>
 				<th>E-mail</th>
 				<th>Estado Civil</th>
+				<th>Cargo</th>
 				<th><a class="btn btn-sm btn-success" th:href="@{/trabajador/create}">
 				<i class="fas fa-edit"></i>&nbsp;Nuevo</a></th>
 			</tr>
@@ -43,6 +44,7 @@
 				<td th:text="${a.telefono}"></td>
 				<td th:text="${a.email}"></td>
 				<td th:text="${a.estadoCivil}"></td>
+				<td th:text="${a.cargo}"></td>
 				<td>
 					<a class="btn btn-info btn-sm" th:href="@{/trabajador/update/} + ${a.idtrabajador}">
 					<i class="fas fa-pencil-alt"></i>&nbsp;Actualizar</a>

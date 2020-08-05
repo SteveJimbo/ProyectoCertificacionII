@@ -95,7 +95,7 @@ public class RolDePago implements Serializable{
 	
 	public void calcularTotal(List<Penalidad> p) {
 		this.total = this.trabajador.getCargo().getSueldo();
-		this.total -= total*0.206f;
+		this.total -= total*0.0945f;
 		if(this.trabajador.getSanciones().size()>0) {
 			for(Sancion s : this.trabajador.getSanciones()) {
 				for(Penalidad pe : p) {

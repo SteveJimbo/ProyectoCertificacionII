@@ -54,7 +54,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -197,14 +197,18 @@
               <p>P&aacute;gina Principal</p>
             </a>
           </li>
-          
+          <li class="nav-item has-treeview menu-open">
+            <a id="acar" th:href="@{/cargo/list}" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>Cargos</p>
+            </a>
+          </li>
           <li class="nav-item has-treeview menu-open">
             <a id="atbr" th:href="@{/trabajador/list}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>Trabajadores</p>
             </a>
           </li>
-          
           <li class="nav-item has-treeview menu-open">
             <a id="ardp" th:href="@{/roldepago/list}" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
@@ -223,12 +227,6 @@
             <a id="apen" th:href="@{/penalidad/list}" class="nav-link">
               <i class="nav-icon fas fa-skull"></i>
               <p>Penalidades</p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a id="acar" th:href="@{/cargo/list}" class="nav-link">
-              <i class="nav-icon fas fa-briefcase"></i>
-              <p>Cargos</p>
             </a>
           </li>
         </ul>
