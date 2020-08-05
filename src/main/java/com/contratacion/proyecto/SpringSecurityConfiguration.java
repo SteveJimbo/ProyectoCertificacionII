@@ -51,5 +51,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 				.headers().frameOptions().sameOrigin();
 		http.formLogin().defaultSuccessUrl("/sistema.html",true);
+		http.logout().logoutSuccessUrl("/index.html");
 	}
 }

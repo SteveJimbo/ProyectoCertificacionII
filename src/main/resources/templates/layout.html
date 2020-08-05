@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 
 <head th:fragment="frgHead">
 
@@ -54,10 +54,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Inicio</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">Contactanos</a>
       </li>
     </ul>
 
@@ -161,38 +161,50 @@
   <aside th:fragment="frgSidebar" class="main-sidebar sidebar-dark-primary elevation-4">
     
     <!-- Brand Logo -->
-    <a th:href="@{/index.html}" class="brand-link">
+    <a th:href="@{/sistema.html}" class="brand-link">
       <img th:src="@{/dist/img/apple-icon.png}" alt="AdminLTE Logo" class="brand-image img-circle" style="opacity: .8">
       <span class="brand-text font-weight-light">SISCON</span>
     </a>
-
+	
     <!-- Sidebar -->
     <div class="sidebar">
     
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img th:src="@{/dist/img/luis.jpg}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="https://www.facebook.com/profile.php?id=100013534274840" class="d-block">Luis Mart&iacute;nez</a>
-        </div>
-      </div>
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img th:src="@{/dist/img/steve.jpg}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="https://www.facebook.com/Steve.Jimbo.I" class="d-block">Steve Jimbo</a>
-        </div>
-      </div>
-
+      
+      	<nav class="mt-2">
+        	<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          		<li class="nav-item has-treeview menu-open">
+            		<a id="apag" href="#" class="nav-link ">
+              			<i class="nav-icon far fa-user"></i>
+              			<p sec:authentication="name"></p>
+            		</a>
+          		</li>
+          		<li class="nav-item has-treeview menu-open">
+            		<a id="apag" href="#" class="nav-link ">
+              			<i class="nav-icon far fa-dot-circle"></i>
+              			<p sec:authorize="hasRole('ROLE_ADMIN')">Administrador</p>
+              			<p sec:authorize="hasRole('ROLE_SUP')">Supervisor</p>
+              			<p sec:authorize="hasRole('ROLE_USER')">Usuario</p>
+            		</a>
+          		</li>
+          		<li class="nav-item has-treeview menu-open">
+            		<a href="#" class="nav-link " onclick="document.getElementById('frmLogout').submit();">
+            			<i class="nav-icon fas fa-sign-out-alt"></i>
+            			<p>Cerrar Sesión</p>
+            			<form id="frmLogout" th:action="@{/logout}" method="post">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						</form>
+            		</a>
+          		</li>
+        	</ul>
+      	</nav><br>
+		
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item has-treeview menu-open">
-            <a id="apag" th:href="@{/index.html}" class="nav-link ">
+            <a id="apag" th:href="@{/sistema.html}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>P&aacute;gina Principal</p>
             </a>
@@ -231,6 +243,9 @@
           </li>
         </ul>
       </nav>
+      
+      
+      
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -264,7 +279,6 @@
 <div class="row">
 
 <!-- CONTENIDO CONTENIDO CONETENIDO CONTENIDO CONTENIDO -->
-<img src="https://thumbs.gfycat.com/GranularAdorableHare-size_restricted.gif" width="1280" height="720">
 
 </div>
 <!-- /.row (main row) -->
