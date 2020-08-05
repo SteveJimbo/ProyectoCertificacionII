@@ -37,7 +37,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping(value="/save")
-	public String save(@Validated Usuario usuario, @RequestParam(value = "rol") String rol, BindingResult result, Model model, RedirectAttributes flash) {
+	public String save(@Validated Usuario usuario, BindingResult result, @RequestParam(value = "rol") String rol, Model model, RedirectAttributes flash) {
 		int i = 0;
 		
 		try {

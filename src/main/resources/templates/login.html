@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout :: frgHead"></head>
-<body class="hold-transition login-page" th:style="'background-image:url(' + @{/inicio/assets/img/ciudad.jpg} + ');'">
+<body class="hold-transition login-page " th:style="'background-image:url(' + @{/inicio/assets/img/ciudad.jpg} + ');'">
 <div class="login-box">
  
   <!-- /.login-logo -->
@@ -49,37 +49,48 @@
         </div>
       </form>
 	
-		<!--  
-
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
-      
 		
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      -->
-      
       
     </div>
     <!-- /.login-card-body -->
   </div>
 </div>
+<div th:replace="layout :: frgScripts"></div>
+<div class="row">
+			<div class="col-12">
+				<div id="success-alert" th:if="${success != null}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var message = /*[[${success}]]*/
+						swal.fire({
+							title : 'Correcto',
+							text : message,
+							icon : 'success',
+							heightAuto: false
+						})
+						/*]]>*/
+					</script>
+				</div>
+				<div id="error-alert" >
+					<script th:inline="javascript" th:if="${error != null}">
+						/*<![CDATA[*/
+						var message = /*[[${error}]]*/
+						Swal.fire({
+							title : 'Error',
+							text : message,
+							icon : 'error',
+							heightAuto: false
+						
+						})
+						/*]]>*/
+					</script>
+				</div>
+
+			</div>
+		</div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+
 
 </body>
 </html>

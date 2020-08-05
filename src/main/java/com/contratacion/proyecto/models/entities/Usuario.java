@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -32,24 +33,24 @@ public class Usuario implements Serializable{
 	private Integer idusuario;
 	
 	@Column(name="nombres")
-	@NotEmpty
+	@NotNull
 	@Size(min=4)
 	private String nombres;
 	
 	
 	@Column(name="apellidos")
-	@NotEmpty
+	@NotNull
 	@Size(min=4)
 	private String apellidos;
 	
 	
 	@Column(name="nombre", unique=true)
-	@NotEmpty
+	@NotNull
 	@Size(min=4)
 	private String nombre;
 	
 	@Column(name="password")
-	@NotEmpty
+	@NotNull
 	@Size(min=8)
 	private String password;
 	

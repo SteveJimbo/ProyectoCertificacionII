@@ -17,56 +17,61 @@
           <input type="text" class="form-control" 
           		th:errorclass="'form-control is-invalid'"
           		th:field="*{nombres}" placeholder="Nombres">
-          		<small class="invalid-feedback" 
-          		th:if="${#fields.hasErrors('nombres')}"
-          		th:errors="*{nombres}"></small>
-          <div class="input-group-append">
+          		<div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-font"></span>
             </div>
           </div>
+          		<small class="invalid-feedback" 
+          		th:if="${#fields.hasErrors('nombres')}"
+          		th:errors="*{nombres}"></small>
+          
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" 
           th:errorclass="'form-control is-invalid'"
           th:field="*{apellidos}" placeholder="Apellidos" />
-          <small
-          class="invalid-feedback"
-          th:if="${#fields.hasErrors('apellidos')}"
-          th:errors="*{apellidos}"></small>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-font"></span>
             </div>
           </div>
+          <small
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('apellidos')}"
+          th:errors="*{apellidos}"></small>
+          
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" 
 			th:errorclass="'form-control is-invalid'"
 			th:field="*{nombre}" placeholder="Nombre de usuario" /> 
-			<small
-			class="invalid-feedback"
-			th:if="${#fields.hasErrors('nombre')}"
-			th:errors="*{nombre}"></small>          
-          <div class="input-group-append">
+			<div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
+			<small
+			class="invalid-feedback"
+			th:if="${#fields.hasErrors('nombre')}"
+			th:errors="*{nombre}"></small>          
+          
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control" 
 			th:errorclass="'form-control is-invalid'"
-			th:field="*{password}" placeholder="Password" /><small
-			class="invalid-feedback"
-			th:if="${#fields.hasErrors('password')}"
-			th:errors="*{password}"></small>         
-         
-          <div class="input-group-append">
+			th:field="*{password}" placeholder="Password" />
+			<div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-key"></span>
             </div>
           </div>
+			<small
+			class="invalid-feedback"
+			th:if="${#fields.hasErrors('password')}"
+			th:errors="*{password}"></small>         
+         
+          
         </div>
         <div class="input-group mb-3">
         	<select class="form-control" th:name="rol">
@@ -106,7 +111,6 @@
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
-<!-- /.register-box -->
 <div class="row">
 			<div class="col-12">
 				<div id="success-alert" th:if="${success != null}">
@@ -114,10 +118,10 @@
 						/*<![CDATA[*/
 						var message = /*[[${success}]]*/
 						Swal.fire({
-							title : '¡Correcto!',
+							title : 'Correcto',
 							text : message,
 							icon : 'success',
-							button : 'Aceptar'
+							heightAuto: false
 						})
 						/*]]>*/
 					</script>
@@ -127,10 +131,10 @@
 						/*<![CDATA[*/
 						var message = /*[[${error}]]*/
 						Swal.fire({
-							title : '¡Error!',
+							title : 'Error',
 							text : message,
 							icon : 'error',
-							button : 'Aceptar'
+							heightAuto: false
 						})
 						/*]]>*/
 					</script>
@@ -138,12 +142,10 @@
 
 			</div>
 		</div>
+<!-- /.register-box -->
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+
+<div th:replace="layout :: frgScripts"></div>
+
 </body>
 </html>
