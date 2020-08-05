@@ -12,6 +12,12 @@ public class MainController {
 	@GetMapping(value= {"/","/index.html"})
 	public String index(Model model) {
 		model.addAttribute("title","Página Principal");
+		return "inicio";
+	}
+	
+	@GetMapping(value= {"/sistema.html"})
+	public String sistema(Model model) {
+		model.addAttribute("title","Página Principal");
 		return "layout";
 	}
 }
