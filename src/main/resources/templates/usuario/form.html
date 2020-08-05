@@ -1,10 +1,97 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout :: frgHead"></head>
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../index2.html"><b>Registrarse</b></a>
+  </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">A continuaci&oacute;n ingrese sus datos</p>
 
+      <form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" 
+          		th:errorclass="'form-control is-invalid'"
+          		th:field="*{nombres}" placeholder="Nombres">
+          		<small class="invalid-feedback" 
+          		th:if="${#fields.hasErrors('nombres')}"
+          		th:errors="*{nombres}"></small>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" 
+          th:errorclass="'form-control is-invalid'"
+          th:field="*{apellidos}" placeholder="Apellidos" />
+          <small
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('apellidos')}"
+          th:errors="*{apellidos}"></small>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" 
+			th:errorclass="'form-control is-invalid'"
+			th:field="*{nombre}" placeholder="Nombre de usuario" /> 
+			<small
+			class="invalid-feedback"
+			th:if="${#fields.hasErrors('nombre')}"
+			th:errors="*{nombre}"></small>          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" 
+			th:errorclass="'form-control is-invalid'"
+			th:field="*{password}" placeholder="Password" /><small
+			class="invalid-feedback"
+			th:if="${#fields.hasErrors('password')}"
+			th:errors="*{password}"></small>         
+         
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+            <a th:href="@{/}" class="btn btn-sm academy-btn btn-2 ml-2"><i class="fas fa-times"></i> &nbsp;Cancelar</a>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      
+
+      <a th:href="@{/login}" class="text-center">Ya tengo una cuenta</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
 </body>
 </html>
