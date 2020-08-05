@@ -318,7 +318,38 @@
     <div class="float-right d-none d-sm-inline-block">
       <b>Version 1.0.1</b>
     </div>
-    
+    <div class="row">
+			<div class="col-12">
+				<div id="success-alert" th:if="${success != null}">
+					<script th:inline="javascript">
+						/*<![CDATA[*/
+						var message = /*[[${success}]]*/
+						Swal.fire({
+							title : 'Correcto',
+							text : message,
+							icon : 'success',
+							heightAuto: false
+						})
+						/*]]>*/
+					</script>
+				</div>
+				<div id="error-alert" >
+					<script th:inline="javascript" th:if="${error != null}">
+						/*<![CDATA[*/
+						var message = /*[[${error}]]*/
+						Swal.fire({
+							title : 'Error',
+							text : message,
+							icon : 'error',
+							heightAuto: false
+						
+						})
+						/*]]>*/
+					</script>
+				</div>
+
+			</div>
+		</div>
   </footer>
 
 </div>

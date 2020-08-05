@@ -30,7 +30,7 @@ public class MainController {
 			Model model, Principal principal, RedirectAttributes flash) {
 		
 		if(principal != null) {
-			flash.addFlashAttribute("info", "El usuario ya tiene una sesión activa.");
+			flash.addFlashAttribute("success", "El usuario ya tiene una sesión activa.");
 			return "redirect:/sistema.html";
 		}		
 		if(error != null) {

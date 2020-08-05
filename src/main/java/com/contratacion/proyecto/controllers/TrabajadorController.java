@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.contratacion.proyecto.models.entities.Cargo;
 import com.contratacion.proyecto.models.entities.Trabajador;
@@ -69,8 +72,29 @@ public class TrabajadorController {
 	}
 	
 	@PostMapping(value="/save")
-	public String save(Trabajador trabajador, Model model) {
-		this.srvTrabajador.save(trabajador);
+	public String save(@Validated Trabajador trabajador, BindingResult result, Model model, RedirectAttributes flash) {
+		
+		try {
+			
+			String message = "Trabajador agregado correctamente";
+			String titulo = "Registro de un nuevo Trabajador";
+			
+			if(trabajador.getIdtrabajador() != null) {
+				message = "Trabajador actualizado correctamente";
+				titulo = "Actualizando el registro de: "+ trabajador.toString();
+			}
+			
+			if(result.hasErrors()) {
+				model.addAttribute("title", titulo);
+				flash.addFlashAttribute("error", "Error, intentelo de nuevo");
+				return "trabajador/form";				
+			}
+			
+			this.srvTrabajador.save(trabajador);
+			flash.addFlashAttribute("success", message);
+		}catch (Exception ex){
+			flash.addFlashAttribute("error", ex.getMessage());
+		}
 		return "redirect:/trabajador/list";
 	}
 }

@@ -30,20 +30,17 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
 		Usuario usuario = srvUsuario.findByNombre(authentication.getName());
 		
-		
 		SessionFlashMapManager sessionFlashMapManager = new SessionFlashMapManager();
 		FlashMap flashMap = new FlashMap();
 		
-		
-		flashMap.put("success", "Bienvenid@ " + usuario);
-		
-		
+		flashMap.put("success", "Bienvenid@ " + usuario.toString());
 		
 		sessionFlashMapManager.saveOutputFlashMap(flashMap, request, response);
 		if(authentication !=  null) {
 			logger.info("El usuario " + authentication.getName() 
 			+ " ha iniciado sesión con éxito " + Calendar.getInstance().get(Calendar.SHORT_FORMAT));
-		}		
-		super.onAuthenticationSuccess(request, response, authentication);
+		}
+		getRedirectStrategy().sendRedirect(request, response, "/sistema.html");
+		//super.onAuthenticationSuccess(request, response, authentication);
 	}	
 }

@@ -44,13 +44,11 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/h2-console/**").hasAnyRole("ADMIN")
 			.anyRequest().authenticated()
 			.and().formLogin().successHandler(handler).loginPage("/login").permitAll()			
-			.and().logout().permitAll()			
+			.and().logout().permitAll().logoutSuccessUrl("/index.html")			
 			.and().exceptionHandling().accessDeniedPage("/error_403")
 			.and()
 				.csrf().ignoringAntMatchers("/h2-console/**")
 			.and()
 				.headers().frameOptions().sameOrigin();
-		http.formLogin().defaultSuccessUrl("/sistema.html",true);
-		http.logout().logoutSuccessUrl("/index.html");
 	}
 }
