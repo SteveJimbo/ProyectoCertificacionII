@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+<div class="card col-12">
+
+<!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
+	<table id="tabla" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Nombres</th>
+				<th>Apellidos</th>
+				<th>C&eacute;dula</th>
+				<th>Nacionalidad</th>
+				<th>Fec. Nacimiento</th>
+				<th>Tel&eacute;fono</th>
+				<th>E-mail</th>
+				<th>Estado Civil</th>
+				<th>Cargo</th>
+				<th><a class="btn btn-sm btn-success" th:href="@{/trabajador/create}">
+				<i class="fas fa-edit"></i>&nbsp;Nuevo</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="a : ${trabajadores}">
+				<td th:text="${a.nombres}"></td>
+				<td th:text="${a.apellidos}"></td>
+				<td th:text="${a.cedula}"></td>
+				<td th:text="${a.nacionalidad}"></td>
+				<td th:text="${a.fechaNacimiento()}"></td>
+				<td th:text="${a.telefono}"></td>
+				<td th:text="${a.email}"></td>
+				<td th:text="${a.estadoCivil}"></td>
+				<td th:text="${a.cargo}"></td>
+				<td>
+					<a class="btn btn-info btn-sm" th:href="@{/trabajador/update/} + ${a.idtrabajador}">
+					<i class="fas fa-pencil-alt"></i></a>
+					<a class="btn btn-primary btn-sm" th:href="@{/trabajador/retrieve/} + ${a.idtrabajador}">
+					<i class="fas fa-eye"></i></a>
+					<button class="btn btn-danger btn-sm btnDelete" th:value="${a.idtrabajador}"><i class="fas fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+<script>
+  $(function () {
+    $('#tabla').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+<script th:src="@{/js/trabajador/delete.js}"></script>
+</body>
+</html>

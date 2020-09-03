@@ -1,5 +1,6 @@
 package com.contratacion.proyecto.controllers;
 
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -45,8 +46,8 @@ public class MensajeContactoController {
 	@GetMapping(value="/list")
 	public String list(Model model) {
 		List<MensajeContacto> mensajes = this.srvMensajes.findAll();
-		model.addAttribute("Mensajes", mensajes);
-		model.addAttribute("title","Listado de Mensajes");
+		model.addAttribute("mensajes", mensajes);
+		model.addAttribute("title","Listado de Mensajes de Contacto");
 		return "mensajeContacto/list";
 	}
 	
@@ -54,6 +55,7 @@ public class MensajeContactoController {
 	public String save(@RequestBody MensajeContacto mensaje, Model model) {				
 		try {
 			mensaje.setLeido(false);
+			mensaje.setFechaRecibido(Calendar.getInstance());
 			this.srvMensajes.save(mensaje);
 			return "mensajeContacto/exito";
 		} catch (Exception ex) {
