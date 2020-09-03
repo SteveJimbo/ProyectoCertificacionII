@@ -133,34 +133,12 @@
                     <h2 class="section-heading text-uppercase">Contactanos</h2>
                     <h3 class="section-subheading" style="color:white">Mandanos un mensaje y te responderemos lo más pronto posible.</h3>
                 </div>
-                <form id="contactForm" name="sentMessage" novalidate="novalidate">
-                    <div class="row align-items-stretch mb-5">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" id="name" type="text" placeholder="Nombre *" required="required" data-validation-required-message="Por favor, escriba su nombre." />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" id="email" type="email" placeholder="Email *" required="required" data-validation-required-message="Por favor, introduzca su dirección de correo electrónico." />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="form-group mb-md-0">
-                                <input class="form-control" id="phone" type="tel" placeholder="Tel&eacute;fono *" required="required" data-validation-required-message="Por favor, introduzca su número de teléfono." />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group form-group-textarea mb-md-0">
-                                <textarea class="form-control" id="message" placeholder="Mensaje *" required="required" data-validation-required-message="Por favor, ingrese su número de teléfono."></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <div id="success"></div>
-                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Enviar Mensaje</button>
-                    </div>
-                </form>
+                <div id="contentMensaje">
+                </div>
+                <div class="text-center">
+                	<div id="success"></div>
+                    <button class="btn btn-primary btn-xl text-uppercase" id="btnSend">Enviar Mensaje</button>
+                </div>
             </div>
         </section>
         
@@ -183,8 +161,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Contact form JS-->
         <script src="/inicio/assets/mail/jqBootstrapValidation.js"></script>
-        <script src="/inicio/assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
         <script src="/inicio/js/scripts.js"></script>
+        <script src="/js/util.js"></script>
+        <script src="/js/index/index.js"></script>
     </body>
 </html>
