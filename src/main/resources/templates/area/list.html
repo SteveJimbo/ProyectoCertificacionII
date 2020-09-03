@@ -23,22 +23,20 @@
 			<tr>
 				<th>Nombre</th>
 				<th>Descripci&oacute;n</th>
-				<th>Sueldo</th>
-				<th><a class="btn btn-success btn-sm" th:href="@{/cargo/create}">
+				<th><a class="btn btn-success btn-sm" th:href="@{/area/create}">
 				<i class="fas fa-edit"></i>&nbsp;Nuevo</a></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="c : ${cargos}">
-				<td th:text="${c.nombre}"></td>
-				<td th:text="${c.descripcion}"></td>
-				<td th:text="${c.sueldo}"></td>
+			<tr th:each="a : ${areas}">
+				<td th:text="${a.nombre}"></td>
+				<td th:text="${a.descripcion}"></td>
 				<td>
-					<a class="btn btn-info btn-sm" th:href="@{/cargo/update/} + ${c.idcargo}">
+					<a class="btn btn-info btn-sm" th:href="@{/area/update/} + ${a.idarea}">
 					<i class="fas fa-pencil-alt"></i>&nbsp;</a>
-					<a class="btn btn-primary btn-sm" th:href="@{/cargo/retrieve/} + ${c.idcargo}">
+					<a class="btn btn-primary btn-sm" th:href="@{/area/retrieve/} + ${a.idarea}">
 					<i class="fas fa-eye"></i>&nbsp;</a>
-					<button class="btn btn-danger btn-sm btnDelete" th:value="${c.idcargo}"><i class="fas fa-trash"></i></button>
+					<button class="btn btn-danger btn-sm btnDelete" th:value="${a.idarea}"><i class="fas fa-trash"></i></button>
 				</td>
 			</tr>
 		</tbody>
@@ -69,6 +67,6 @@
     });
   });
 </script>
-<script th:src="@{/js/cargo/delete.js}"></script>
+<script th:src="@{/js/area/delete.js}"></script>
 </body>
 </html>
