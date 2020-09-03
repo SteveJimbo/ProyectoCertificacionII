@@ -22,14 +22,7 @@ public class MensajeContactoController {
 	
 	@Autowired
 	private IMensajeContactoService srvMensajes;
-	
-	@GetMapping(value="/create")
-	public String create(Model model) {
-		MensajeContacto mensaje = new MensajeContacto();
-		model.addAttribute("mensaje", mensaje);		
-		return "mensajeContacto/form";
-	}
-	
+		
 	@GetMapping(value="/retrieve/{id}")
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		MensajeContacto mensaje = srvMensajes.findById(id);
@@ -49,17 +42,5 @@ public class MensajeContactoController {
 		model.addAttribute("mensajes", mensajes);
 		model.addAttribute("title","Listado de Mensajes de Contacto");
 		return "mensajeContacto/list";
-	}
-	
-	@PostMapping(value = "/save")
-	public String save(@RequestBody MensajeContacto mensaje, Model model) {				
-		try {
-			mensaje.setLeido(false);
-			mensaje.setFechaRecibido(Calendar.getInstance());
-			this.srvMensajes.save(mensaje);
-			return "mensajeContacto/exito";
-		} catch (Exception ex) {
-			return "mensajeContacto/exito";
-		}		
 	}
 }

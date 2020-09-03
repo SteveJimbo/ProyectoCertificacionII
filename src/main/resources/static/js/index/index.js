@@ -1,6 +1,6 @@
 function create(){	
 	$.ajax({
-		url : "/mensajeContacto/create/",
+		url : "/mensajes/create/",
 		method : 'GET',
 		success : function(response){
 			$("#contentMensaje").html(response);
@@ -13,10 +13,9 @@ function create(){
 
 function save(){	
 	var dataForm = objectifyForm($("#frmMensaje").serializeArray());	
-	var requestBody = JSON.stringify(dataForm);
-	console.log(requestBody);			
+	var requestBody = JSON.stringify(dataForm);			
 	$.ajax({
-		url : developURL + "mensajeContacto/save",
+		url : developURL + "mensajes/save",
 		method : 'POST',
 		contentType : "application/json",
 		headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},		
