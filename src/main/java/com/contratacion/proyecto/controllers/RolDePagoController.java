@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.contratacion.proyecto.models.entities.Penalidad;
+import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.RolDePago;
 import com.contratacion.proyecto.models.entities.Trabajador;
 import com.contratacion.proyecto.models.services.ICargoService;
-import com.contratacion.proyecto.models.services.IPenalidadService;
+import com.contratacion.proyecto.models.services.IDescuentoService;
 import com.contratacion.proyecto.models.services.IRolDePagoService;
-import com.contratacion.proyecto.models.services.ISancionService;
 import com.contratacion.proyecto.models.services.ITrabajadorService;
 
 @Controller
@@ -28,11 +27,9 @@ public class RolDePagoController {
 	@Autowired
 	private ITrabajadorService srvTrabajador;
 	
-	@Autowired
-	private ISancionService srvSancion;
 	
 	@Autowired
-	private IPenalidadService srvPenalidad;
+	private IDescuentoService srvPenalidad;
 	
 	@Autowired
 	private ICargoService srvCargo;
@@ -83,9 +80,9 @@ public class RolDePagoController {
 	@PostMapping(value="/save")
 	public String save(RolDePago rolDePago, Model model) {
 		Trabajador t = srvTrabajador.findById(rolDePago.getTrabajador().getIdtrabajador());
-		rolDePago.getTrabajador().setSanciones(srvSancion.findAll(t.getIdtrabajador()));		
+		//rolDePago.getTrabajador().setSanciones(srvPenalidad.findAll(t.getIdtrabajador()));//		
 		rolDePago.getTrabajador().setCargo(srvCargo.findById(t.getCargo().getIdcargo()));
-		List<Penalidad> p = srvPenalidad.findAll();
+		List<Descuento> p = srvPenalidad.findAll();
 		rolDePago.calcularTotal(p);
 		this.srvRolDePago.save(rolDePago);
 		return "redirect:/roldepago/retrieve/"+srvRolDePago.findLast();

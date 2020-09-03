@@ -10,22 +10,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cargos")
-public class Cargo implements Serializable{
+@Table(name="areas")
+public class Area implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="pk_cargo")
-	private Integer idcargo;
+	@Column(name="pk_area")
+	private Integer idarea;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -33,32 +31,18 @@ public class Cargo implements Serializable{
 	@Column(name="descripcion")
 	private String descripcion;
 	
-	@Column(name="sueldo")
-	private Float sueldo;
+	@OneToMany(mappedBy="area", fetch=FetchType.LAZY)
+	private List<Cargo> cargos;
 	
-	@OneToMany(mappedBy="cargo", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="area", fetch=FetchType.LAZY)
 	private List<Trabajador> trabajadores;
-	
-	@JoinColumn(name="fk_area", referencedColumnName="pk_area")
-	@ManyToOne
-	private Area area;
-	
 
-	public Cargo() {
-		super();
-	}
-	
-	public Cargo(Integer id) {
-		super();
-		this.idcargo = id;
+	public Integer getIdarea() {
+		return idarea;
 	}
 
-	public Integer getIdcargo() {
-		return idcargo;
-	}
-
-	public void setIdcargo(Integer idcargo) {
-		this.idcargo = idcargo;
+	public void setIdarea(Integer idarea) {
+		this.idarea = idarea;
 	}
 
 	public String getNombre() {
@@ -77,12 +61,12 @@ public class Cargo implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public Float getSueldo() {
-		return sueldo;
+	public List<Cargo> getCargos() {
+		return cargos;
 	}
 
-	public void setSueldo(Float sueldo) {
-		this.sueldo = sueldo;
+	public void setCargos(List<Cargo> cargos) {
+		this.cargos = cargos;
 	}
 
 	public List<Trabajador> getTrabajadores() {
@@ -93,20 +77,6 @@ public class Cargo implements Serializable{
 		this.trabajadores = trabajadores;
 	}
 	
-	
-
-	public Area getArea() {
-		return area;
-	}
-
-	public void setArea(Area area) {
-		this.area = area;
-	}
-
-	@Override
-	public String toString() {
-		return this.getNombre();
-	}
 	
 	
 	

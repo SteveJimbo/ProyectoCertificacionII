@@ -8,11 +8,13 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,10 +33,17 @@ public class RolDePago implements Serializable{
 	@Column(name="pk_rol")
 	private Integer idrol;
 	
-	@Column(name="fecha_impresion")
+	@Column(name="fecha_generacion")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Calendar fechaImpresion;
+	private Calendar fechaGeneracion;
+	
+	@Column(name="mes")
+	private String mes;
+	
+	@Column(name="anio")
+	private String anio;
+
 	
 	@Column(name="total")
 	private Float total;
@@ -42,6 +51,9 @@ public class RolDePago implements Serializable{
 	@JoinColumn(name="fk_trabajador", referencedColumnName="pk_trabajador")
 	@ManyToOne
 	private Trabajador trabajador;
+	
+	@OneToMany(mappedBy="rolDePago", fetch=FetchType.LAZY)
+	private List<Detalle> detalles;
 
 	public RolDePago() {
 		super();
@@ -59,13 +71,33 @@ public class RolDePago implements Serializable{
 	public void setIdrol(Integer idrol) {
 		this.idrol = idrol;
 	}
+	
+	
 
-	public Calendar getFechaImpresion() {
-		return fechaImpresion;
+	
+
+	public Calendar getFechaGeneracion() {
+		return fechaGeneracion;
 	}
 
-	public void setFechaImpresion(Calendar fechaImpresion) {
-		this.fechaImpresion = fechaImpresion;
+	public void setFechaGeneracion(Calendar fechaGeneracion) {
+		this.fechaGeneracion = fechaGeneracion;
+	}
+
+	public String getMes() {
+		return mes;
+	}
+
+	public void setMes(String mes) {
+		this.mes = mes;
+	}
+
+	public String getAnio() {
+		return anio;
+	}
+
+	public void setAnio(String anio) {
+		this.anio = anio;
 	}
 
 	public Float getTotal() {
@@ -86,25 +118,25 @@ public class RolDePago implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Rol De Pago : " + this.fechaImpresion();
+		return "Rol De Pago : " + this.fechaGeneracion();
 	}
-	public String fechaImpresion() {
+	public String fechaGeneracion() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
-		return sdf.format(fechaImpresion.getTime());
+		return sdf.format(fechaGeneracion.getTime());
 	}
 	
-	public void calcularTotal(List<Penalidad> p) {
-		this.total = this.trabajador.getCargo().getSueldo();
+	public void calcularTotal(List<Descuento> p) {
+		/*this.total = this.trabajador.getCargo().getSueldo();
 		this.total -= total*0.0945f;
 		if(this.trabajador.getSanciones().size()>0) {
 			for(Sancion s : this.trabajador.getSanciones()) {
-				for(Penalidad pe : p) {
+				for(Descuento pe : p) {
 					if(s.getPenalidad().getIdpenalidad() == pe.getIdpenalidad()) {
 						this.total -= pe.getMonto();
 					}
 				}
 			}
 		}
-		this.fechaImpresion = Calendar.getInstance();	
+		this.fechaGeneracion = Calendar.getInstance();	*/
 	}
 }

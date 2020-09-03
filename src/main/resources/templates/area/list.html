@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+<div class="card col-12">
+
+<!-- CONTENIDO CONTENIDO CONETENIDO CONTENIDO CONTENIDO -->
+	<table id="tabla" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Descripci&oacute;n</th>
+				<th>Sueldo</th>
+				<th><a class="btn btn-success btn-sm" th:href="@{/cargo/create}">
+				<i class="fas fa-edit"></i>&nbsp;Nuevo</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="c : ${cargos}">
+				<td th:text="${c.nombre}"></td>
+				<td th:text="${c.descripcion}"></td>
+				<td th:text="${c.sueldo}"></td>
+				<td>
+					<a class="btn btn-info btn-sm" th:href="@{/cargo/update/} + ${c.idcargo}">
+					<i class="fas fa-pencil-alt"></i>&nbsp;</a>
+					<a class="btn btn-primary btn-sm" th:href="@{/cargo/retrieve/} + ${c.idcargo}">
+					<i class="fas fa-eye"></i>&nbsp;</a>
+					<button class="btn btn-danger btn-sm btnDelete" th:value="${c.idcargo}"><i class="fas fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+      
+</div>
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+<script>
+  $(function () {
+    $('#tabla').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+<script th:src="@{/js/cargo/delete.js}"></script>
+</body>
+</html>

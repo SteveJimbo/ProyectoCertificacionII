@@ -10,20 +10,22 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="penalidades")
-public class Penalidad implements Serializable{
+@Table(name="descuentos")
+public class Descuento implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name="pk_penalidad")
-	private Integer idpenalidad;
+	@Column(name="pk_descuento")
+	private Integer iddescuento;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -34,24 +36,30 @@ public class Penalidad implements Serializable{
 	@Column(name="monto")
 	private Float monto;
 	
-	@OneToMany(mappedBy="penalidad", fetch=FetchType.LAZY)
-	private List<Sancion> sanciones;
+	@JoinColumn(name="fk_detalle", referencedColumnName="pk_detalle")
+	@ManyToOne
+	private Detalle detalle;
+	
 
-	public Penalidad() {
+
+	public Descuento() {
 		super();
 	}
 	
-	public Penalidad(Integer id) {
+	public Descuento(Integer id) {
 		super();
-		this.idpenalidad = id;
+		this.iddescuento = id;
 	}
 
-	public Integer getIdpenalidad() {
-		return idpenalidad;
+	
+	
+
+	public Integer getIddescuento() {
+		return iddescuento;
 	}
 
-	public void setIdpenalidad(Integer idpenalidad) {
-		this.idpenalidad = idpenalidad;
+	public void setIddescuento(Integer iddescuento) {
+		this.iddescuento = iddescuento;
 	}
 
 	public String getNombre() {
@@ -77,13 +85,16 @@ public class Penalidad implements Serializable{
 	public void setMonto(Float monto) {
 		this.monto = monto;
 	}
+	
+	
 
-	public List<Sancion> getSanciones() {
-		return sanciones;
+	
+	public Detalle getDetalle() {
+		return detalle;
 	}
 
-	public void setSanciones(List<Sancion> sanciones) {
-		this.sanciones = sanciones;
+	public void setDetalle(Detalle detalle) {
+		this.detalle = detalle;
 	}
 
 	@Override

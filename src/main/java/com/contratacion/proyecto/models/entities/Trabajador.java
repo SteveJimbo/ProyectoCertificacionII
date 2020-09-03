@@ -64,8 +64,9 @@ public class Trabajador implements Serializable {
 	@ManyToOne
 	private Cargo cargo;
 	
-	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Sancion> sanciones;
+	@JoinColumn(name="fk_area", referencedColumnName="pk_area")
+	@ManyToOne
+	private Area area;
 	
 	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<RolDePago> roles;
@@ -159,13 +160,7 @@ public class Trabajador implements Serializable {
 		this.cargo = cargo;
 	}
 
-	public List<Sancion> getSanciones() {
-		return sanciones;
-	}
 
-	public void setSanciones(List<Sancion> sanciones) {
-		this.sanciones = sanciones;
-	}
 
 	public List<RolDePago> getRoles() {
 		return roles;
@@ -173,6 +168,17 @@ public class Trabajador implements Serializable {
 
 	public void setRoles(List<RolDePago> roles) {
 		this.roles = roles;
+	}
+	
+	
+	
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
 	}
 
 	@Override
