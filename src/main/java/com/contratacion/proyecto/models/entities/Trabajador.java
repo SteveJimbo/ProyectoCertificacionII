@@ -64,7 +64,7 @@ public class Trabajador implements Serializable {
 	@ManyToOne
 	private Cargo cargo;
 	
-	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Sancion> sanciones;
 	
 	@OneToMany(mappedBy="trabajador", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
