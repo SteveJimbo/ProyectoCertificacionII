@@ -1,6 +1,8 @@
 package com.contratacion.proyecto.models.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -9,6 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="mensajes")
@@ -36,6 +42,11 @@ public class MensajeContacto implements Serializable{
 	
 	@Column(name="leido")
 	private boolean leido;
+	
+	@Column(name="fecha_recibido")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Calendar fechaRecibido;
 	
 	public MensajeContacto() {
 		super();
@@ -92,5 +103,18 @@ public class MensajeContacto implements Serializable{
 
 	public void setLeido(boolean leido) {
 		this.leido = leido;
+	}
+	
+	public Calendar getFechaRecibido() {
+		return fechaRecibido;
+	}
+
+	public void setFechaRecibido(Calendar fechaRecibido) {
+		this.fechaRecibido = fechaRecibido;
+	}
+
+	public String fechaRecibido() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");		
+		return sdf.format(fechaRecibido.getTime());
 	}
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+<div class="card col-12">
+
+<!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
+	<table id="tabla" class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Estado</th>
+				<th>Fecha</th>
+				<th>Nombre</th>
+				<th>Mensaje</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="m : ${mensajes}">
+				<td th:if="${m.leido}">Abierto</td>
+				<td th:unless="${m.leido}"><b>Nuevo</b></td>
+				<td th:text="${m.fechaRecibido()}"></td>
+				<td th:text="${m.nombre}"></td>
+				<td th:text="${m.mensaje}"></td>
+				<td>
+					<a class="btn btn-primary btn-sm" th:href="@{/mensajeContacto/retrieve/} + ${m.idmensajeContacto}">
+					<i class="fas fa-eye"></i></a>
+					<button class="btn btn-danger btn-sm btnDelete" th:value="${m.idmensajeContacto}"><i class="fas fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+<script>
+  $(function () {
+    $('#tabla').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+<script th:src="@{/js/mensaje/delete.js}"></script>
+</body>
+</html>

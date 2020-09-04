@@ -3,6 +3,7 @@ package com.contratacion.proyecto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -36,7 +37,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/","/dist/**","/docs/**","/pages/**","/plugins/**","/inicio/**","/js/**").permitAll()
 			.antMatchers("/cargo/**").hasAnyRole("ADMIN")
-			.antMatchers("/mensajeContacto/**").anonymous()
+			.antMatchers("/mensajes/**").anonymous()
+			.antMatchers("/mensajeContacto/**").hasAnyRole("ADMIN")
 			.antMatchers("/descuento/**").hasAnyRole("ADMIN")
 			.antMatchers("/bono/**").hasAnyRole("ADMIN")
 			.antMatchers("/area/**").hasAnyRole("ADMIN")

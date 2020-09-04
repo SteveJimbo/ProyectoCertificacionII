@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<!-- Contenido -->
+<section class="content">
+<div class="row">
+	<div class="col-md-6">
+	<div class="card card-solid">
+		<div class="card-body pb-0">
+			<div class="row">
+				<div class="col">
+					<div class="p-5">
+						<div class="card bg-light">
+							<div class="card-header text-muted border-bottom-0 row">
+								<div class="col-6">
+									<h1 class="h4 text-gray-900 mb-4">Mensaje de Contacto</h1>
+								</div>
+								<div class="col-6 text-center">
+									<img th:src="@{/dist/img/information-logo-md.png}" alt="brand_logo" class="img-circle img-fluid">
+								</div>
+								
+								
+							</div>
+							<div class="card-body pt-0">
+								<div class="row">
+								
+									<div class="col-4">
+										<h6 class="lead">Fecha</h6>
+										<p class="text-muted text-lg" th:text="${mensaje.fechaRecibido()}"></p>
+									</div>
+									<div class="col-4">
+										<h6 class="lead">Nombre</h6>
+										<p class="text-muted text-lg" th:text="${mensaje.nombre}"></p>
+									</div>
+									<div class="col-4">
+										<h6 class="lead">Email</h6>
+										<p class="text-muted text-lg" th:text="${mensaje.email}"></p>
+									</div>
+									<div class="col-4">
+										<h6 class="lead">Tel&eacute;fono</h6>
+										<p class="text-muted text-lg" th:text="${mensaje.telefono}"></p>
+									</div>
+									<div class="col-4">
+										<h6 class="lead">Mensaje</h6>
+										<p class="text-muted text-lg" th:text="${mensaje.mensaje}"></p>
+									</div>									
+								</div>
+							</div>	
+							<div class="card-footer">
+								<div class="text-left">													
+									<a th:href="@{/mensajeContacto/list}" class="btn btn-lg btn-info">Cancelar</a>
+								</div>
+							</div>											
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>				
+	</div>
+	</div>
+</div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 function create(){	
 	$.ajax({
-		url : "/mensajeContacto/create/",
+		url : "/mensajes/create/",
 		method : 'GET',
 		success : function(response){
 			$("#contentMensaje").html(response);
@@ -13,10 +13,9 @@ function create(){
 
 function save(){	
 	var dataForm = objectifyForm($("#frmMensaje").serializeArray());	
-	var requestBody = JSON.stringify(dataForm);
-	console.log(requestBody);			
+	var requestBody = JSON.stringify(dataForm);			
 	$.ajax({
-		url : developURL + "mensajeContacto/save",
+		url : developURL + "mensajes/save",
 		method : 'POST',
 		contentType : "application/json",
 		headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},		
@@ -30,14 +29,14 @@ function save(){
                         )
                         .append("</button>");
                     $("#success > .alert-success").append(
-                        "<strong>Your message has been sent. </strong>"
+                        "<strong>Tu mensaje ha sido enviado.</strong>"
                     );
                     $("#success > .alert-success").append("</div>");
                     //clear all fields
-                    $("#contactForm").trigger("reset");
+                    $("#frmMensaje").trigger("reset");
 		},
 		error : function(err){
-			// Fail message
+					// Fail message
                     $("#success").html("<div class='alert alert-danger'>");
                     $("#success > .alert-danger")
                         .html(
@@ -46,12 +45,12 @@ function save(){
                         .append("</button>");
                     $("#success > .alert-danger").append(
                         $("<strong>").text(
-                            "Sorry, it seems that my mail server is not responding. Please try again later!"
+                            "Lo siento, parece que mi servidor de correo no responde. ¡Por favor, inténtelo de nuevo más tarde!"
                         )
                     );
                     $("#success > .alert-danger").append("</div>");
                     //clear all fields
-                    $("#contactForm").trigger("reset");
+                    $("#frmMensaje").trigger("reset");
 		}		
 	});
 	
