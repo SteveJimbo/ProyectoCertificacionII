@@ -1,6 +1,5 @@
 package com.contratacion.proyecto.controllers;
 
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.contratacion.proyecto.models.entities.MensajeContacto;
@@ -26,6 +23,10 @@ public class MensajeContactoController {
 	@GetMapping(value="/retrieve/{id}")
 	public String retrieve(@PathVariable(value="id") Integer id, Model model) {
 		MensajeContacto mensaje = srvMensajes.findById(id);
+		if(!mensaje.getLeido()) {
+			mensaje.setLeido(true);
+			srvMensajes.save(mensaje);	
+		}
 		model.addAttribute("mensaje", mensaje);
 		return "mensajeContacto/card";
 	}
