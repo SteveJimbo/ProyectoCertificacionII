@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="cargos")
@@ -42,6 +43,28 @@ public class Cargo implements Serializable{
 	@JoinColumn(name="fk_area", referencedColumnName="pk_area")
 	@ManyToOne
 	private Area area;
+	
+	//Transient
+	
+	@Transient
+	private int areaid;
+	
+	
+	public int getAreaid() {
+		return areaid;
+	}
+
+	public void setAreaid(int areaid) {
+		this.areaid = areaid;
+	}
+
+	
+	//End Of Transient
+	
+	
+	
+	
+
 	
 
 	public Cargo() {

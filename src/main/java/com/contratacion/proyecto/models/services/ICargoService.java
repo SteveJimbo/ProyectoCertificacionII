@@ -9,4 +9,5 @@ public interface ICargoService{
 	public Cargo findById(Integer id);
 	public void delete(Integer id);
 	public List<Cargo> findAll();
+	public List<Cargo> findByArea(Integer id);
 }

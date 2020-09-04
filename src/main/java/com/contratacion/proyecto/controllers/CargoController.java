@@ -2,15 +2,21 @@ package com.contratacion.proyecto.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.contratacion.proyecto.models.services.IAreaService;
 import com.contratacion.proyecto.models.services.ICargoService;
+import com.contratacion.proyecto.models.entities.Area;
 import com.contratacion.proyecto.models.entities.Cargo;
 
 @Controller
@@ -20,11 +26,13 @@ public class CargoController {
 	@Autowired
 	private ICargoService srvCargo;
 	
-	@GetMapping(value="/create")
-	public String create(Model model) {
+	@Autowired
+	private IAreaService srvArea;
+	
+	@GetMapping(value="/create/{id}")
+	public String create(@PathVariable(value="id") Integer id, Model model) {
 		Cargo cargo = new Cargo();
-
-		model.addAttribute("title","Registro de un nuevo Cargo");
+		cargo.setAreaid(id);
 		model.addAttribute("cargo", cargo);
 		return "cargo/form";
 	}
@@ -52,20 +60,28 @@ public class CargoController {
 		return "redirect:/cargo/list";
 	}
 	
-	@GetMapping(value="/list")
-	public String list(Model model) {
-		List<Cargo> cargo = this.srvCargo.findAll();
-		
-		model.addAttribute("cargos", cargo);
-		
-		model.addAttribute("title","Listado de cargos");
+	@GetMapping(value="/list/{id}")
+	public String list(@PathVariable(value="id") Integer id, Model model) {
+		List<Cargo> cargos = this.srvCargo.findByArea(id);
+		System.out.println(cargos);
+		model.addAttribute("cargos", cargos);
 		return "cargo/list";
 	}
 	
 	@PostMapping(value="/save")
-	public String save(Cargo cargo, Model model) {
-		this.srvCargo.save(cargo);
-		return "redirect:/cargo/list";
+	public String save(@RequestBody @Valid Cargo cargo, BindingResult result, Model model) {
+		try {
+			Area area = this.srvArea.findById(cargo.getAreaid());
+			
+			cargo.setArea(area);
+
+			this.srvCargo.save(cargo);			
+			return "cargo/list";
+		} catch (Exception ex) {	
+			
+			return "cargo/form";
+		}	
+	
 	}
 	
 	

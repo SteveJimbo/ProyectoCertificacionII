@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="areas")
 public class Area implements Serializable {
@@ -31,9 +33,11 @@ public class Area implements Serializable {
 	@Column(name="descripcion")
 	private String descripcion;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="area", fetch=FetchType.LAZY)
 	private List<Cargo> cargos;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="area", fetch=FetchType.LAZY)
 	private List<Trabajador> trabajadores;
 

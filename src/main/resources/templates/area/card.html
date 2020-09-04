@@ -5,122 +5,108 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 
 <div class="wrapper">
-<div th:replace="layout :: frgNavbar"></div>
-<div th:replace="layout :: frgSidebar"></div>
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-<div th:replace="layout :: frgHeader"></div>
-<!-- Main content -->
-<!-- Contenido -->
-<section class="content">
-<div class="row">
-	<div class="col-md-12">
-		<div class="card card-solid">
-			<div class="card-body pb-0">
+	<div th:replace="layout :: frgNavbar"></div>
+	<div th:replace="layout :: frgSidebar"></div>
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<div th:replace="layout :: frgHeader"></div>
+			<!-- Main content -->
+			<!-- Contenido -->
+			<section class="content">
 				<div class="row">
-					<div class="col">
-						<div class="p-4">
-							<div class="card bg-light">
+					<div class="col-md-12">
+						<div class="card card-solid">
+							<div class="card-body pb-0">
 								<div class="row">
-									<div class="col-8">
-										<div class="card-header text-muted border-bottom-0">
-											<h1 th:text="${area}" class="h1 text-gray-900 mb-4"></h1>
-										</div>
-										<div class="card-body pt-0">
-											<div class="row">
-												<div class="col-7">
-													<h6 class="lead">Descripci&oacute;n:</h6>
-													<p class="text-muted text-lg" th:text="${area.descripcion}"></p>
+									<div class="col">
+										<div class="p-4">
+											<div class="card bg-light">
+												<div class="row">
+													<div class="col-8">
+														<div class="card-header text-muted border-bottom-0">
+															<h1 th:text="${area}" class="h1 text-gray-900 mb-4"></h1>
+														</div>
+														<div class="card-body pt-0">
+															<div class="row">
+																<div class="col-7">
+																	<h6 class="lead">Descripci&oacute;n:</h6>
+																	<p class="text-muted text-lg" th:text="${area.descripcion}"></p>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-4 text-center">
+														<img th:src="@{/dist/img/information-logo-lg.png}" alt="brand_logo" class="img-circle img-fluid">
+													</div>
 												</div>
-												
+												<div class=row>
+													<div class="card-footer col">
+														<div class="text-right">
+															<a th:href="@{/area/delete/} + ${area.idarea}" class="btn btn-lg btn-danger"><i class="fas fa-trash"></i>&nbsp;Borrar</a>
+															<a th:href="@{/area/list}" class="btn btn-lg btn-info">Cancelar</a>
+															<input type="hidden" th:field = ${area.idarea} />
+														</div>
+													</div>
+												</div>
+											
+											</div>							
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="p-4">
+											<div class="card bg-light">
+												<ul class="nav nav-tabs" id="myTab" role="tablist">
+													
+													<li class="nav-item"><a class="nav-link" id="tab--2"
+														data-toggle="tab" href="#tab2" role="tab"
+														aria-controls="tab2" aria-selected="false">Cargos</a>
+													</li>
+													
+												</ul>
+												<div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+													<div class="academy-tab-content">
+														<button id="btnAdd" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
+														<!-- Tab Text -->
+														<div class="academy-tab-text" id="listCargo">
+														</div>
+													</div>
+												</div>		
 											</div>
-										</div>
-										
-									</div>
-									<div class="col-4 text-center">
-										<img th:src="@{/dist/img/information-logo-lg.png}" alt="brand_logo" class="img-circle img-fluid">
-									</div>
-								</div>
-								<div class=row>
-									<div class="card-footer col">
-										<div class="text-right">
-												
-											<a th:href="@{/area/delete/} + ${area.idarea}" class="btn btn-lg btn-danger"><i class="fas fa-trash"></i>&nbsp;Borrar</a>
-											<a th:href="@{/area/list}" class="btn btn-lg btn-info">Cancelar</a>
+																
 										</div>
 									</div>
 								</div>
-										
 							</div>
-															
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col">
-						<div class="p-4">
-							<div class="card bg-light">
-								<ul class="nav nav-tabs">
-									<li class="nav-item d-none d-sm-inline-block"><a class="nav-link" href="#">Cargos</a></li>
-								</ul>
-								<table id="tabla" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Descripci&oacute;n</th>
-											<th>Sueldo</th>
-											<th><a class="btn btn-success btn-sm" th:href="@{/cargo/create}">
-											<i class="fas fa-edit"></i>&nbsp;Nuevo</a></th>
-										</tr>
-									</thead>
-									<tbody>
-										
-									</tbody>
-								</table>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-								  Launch demo modal
-								</button>
-								
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								  <div class="modal-dialog modal-dialog-centered" role="document">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
-								        </button>
-								      </div>
-								      <div class="modal-body">
-								        ...
-								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								        <button type="button" class="btn btn-primary">Save changes</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
-								
-								
-									
-							</div>
-															
-						</div>
+			</section>
+		</div>
+		
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Ingresar Cargo</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div id="contentCargo" class="modal-body contact-area contact-content-modal">
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btnSubmit" class="btn btn-sm academy-btn btn-3">Guardar</button>					
+						<button type="button" class="btn btn-sm academy-btn btn-2" data-dismiss="modal">Cancelar</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<div th:replace="layout :: frgFooter"></div>	
+	<div th:replace="layout :: frgFooter"></div>	
 </div>
 <!-- ./wrapper -->	
 <div th:replace="layout :: frgScripts"></div>
-
+<script th:src="@{/js/area/card-cargo.js}"></script>
 </body>
 </html>

@@ -37,4 +37,17 @@ public class CargoService implements ICargoService{
 	public List<Cargo> findAll() {
 		return (List<Cargo>) dao.findAll();
 	}
+
+	@Override
+	@Transactional
+	public List<Cargo> findByArea(Integer id) {
+		try {
+			List<Cargo> resultado = dao.findByArea(id);
+			return resultado;
+		}
+		catch(Exception ex) {
+			System.out.println("Error =>" + ex.getMessage());
+			return null;
+		}
+	}
 }
