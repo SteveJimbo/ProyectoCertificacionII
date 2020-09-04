@@ -20,7 +20,7 @@
 <div class="col-md-6">
 	<div class="card card-info">
 		<div class="card-header">
-			<h3 class="card-title">Ingrese los datos</h3>
+			<h3 class="card-title">Complete los datos</h3>
 		</div>
 		<form role="form" class="user" th:action="@{/roldepago/save}" th:object="${rolDePago}" method="post">
 			<div class="card-body">
@@ -33,7 +33,46 @@
 						<option value=0>-- Seleccione Trabajador --</option>
 						<option th:each="t : ${trabajadores}" th:value="${t.idtrabajador}" th:text="${t}"></option>
 					</select>
-				</div>							
+				</div>
+				<label for="mes">Mes</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fas fa-check"></i> </span>
+					</div>
+					<select th:field="*{mes}" class="form-control select2bs4" >
+						<option value=0>-- Seleccione Mes --</option>
+						<option value="Enero">01 - Enero</option>
+						<option value="Febrero">02 - Febrero</option>
+						<option value="Marzo">03 - Marzo</option>
+						<option value="Abril">04 - Abril</option>
+						<option value="Mayo">05 - Mayo</option>
+						<option value="Junio">06 - Junio</option>
+						<option value="Julio">07 - Julio</option>
+						<option value="Agosto">08 - Agosto</option>
+						<option value="Septiembre">09 - Septiembre</option>
+						<option value="Octubre">10 - Octubre</option>
+						<option value="Noviembre">11 - Noviembre</option>
+						<option value="Diciembre">12 - Diciembre</option>
+					</select>
+				</div>
+				<label for="anio">A&ntilde;o</label>	
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="fas fa-check"></i> </span>
+					</div>
+					<select th:field="*{anio}" class="form-control select2bs4" >
+						<option value=0>-- Seleccione A&ntilde;o --</option>
+						<option value=2019>2019</option>
+						<option value=2020>2020</option>
+					</select>
+				</div>
+				<label for="total">Total</label>	
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"> <i class="far fa-money-bill-alt"></i> </span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{total}" placeholder="Total" readonly>
+				</div>								
 			</div>
 					
 			<div class="form-group row">
@@ -50,6 +89,25 @@
 	</div>
 </div>
 
+<div class="col-md-6">
+	<div class="card card-info">
+		<div class="card-header">
+			<h3 class="card-title">Valores</h3>
+		</div>
+			<div class="card-body">
+				<label>Obligatorios</label>
+				<div class="input-group mb-3" id="obligatorios">
+				</div>
+				<label>Adicionales</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-xs academy-btn btn-3" id="btnAdd" data-toggle="modal" data-target="#modalDetalle"><i class="fas fa-plus-circle"></i>&nbsp;Nuevo</button>
+				<div class="input-group mb-3" id="adicionales">
+				</div>						
+			</div>
+	</div>
+</div>
+
+
+
 </div>
 <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
@@ -57,6 +115,26 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<!-- Modal de detalle -->
+	<div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Agregar Detalle</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body contact-area contact-content-modal" id="contentFormulario">
+				</div>
+				<div class="modal-footer">
+					<button id="btnSubmit" type="button" class="btn btn-sm academy-btn btn-3" data-dismiss="modal">Guardar</button>
+					<button type="button" class="btn btn-sm academy-btn btn-2" 	data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 <div th:replace="layout :: frgFooter"></div>	
 </div>
 <!-- ./wrapper -->	
@@ -69,5 +147,6 @@
     })
   })
 </script>
+<script th:src="@{/js/roldepago/add-detalle.js}"></script>
 </body>
 </html>

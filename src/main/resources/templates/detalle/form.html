@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<form id="frmDetalle" 
+	class="contact-form-area ml-3 mr-3" 
+	th:object="${detalle}" th:action="@{/roldepago/add}" method="post">		
+		<div class="row d-flex align-items-center">
+			<div class="col-1">
+				<i class="fas fa-book-open"></i>
+			</div>
+			<div class="col-2">
+				<small>Nombre:</small>
+			</div>
+			<div class="col-9">
+				<input type="text" class="form-control form-control-user" th:field="*{nombre}" placeholder="Nombre">
+			</div>
+		</div>
+		<div class="row d-flex align-items-center">
+			<div class="col-1">
+				<i class="fab fa-typo3"></i>
+			</div>
+			<div class="col-2">
+				<small>Monto:</small>
+			</div>
+			<div class="col-9">
+				<input type="text" class="form-control form-control-user" th:field="*{monto}" placeholder="Monto">
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>

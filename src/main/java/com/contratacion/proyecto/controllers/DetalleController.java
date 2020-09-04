@@ -23,7 +23,6 @@ public class DetalleController {
 	@GetMapping(value="/create")
 	public String create(Model model) {
 		Detalle detalle = new Detalle();
-
 		model.addAttribute("title","Registro de un nuevo detalle");
 		model.addAttribute("detalle", detalle);
 		return "detalle/form";

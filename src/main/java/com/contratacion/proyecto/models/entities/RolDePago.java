@@ -72,10 +72,6 @@ public class RolDePago implements Serializable{
 		this.idrol = idrol;
 	}
 	
-	
-
-	
-
 	public Calendar getFechaGeneracion() {
 		return fechaGeneracion;
 	}
@@ -114,6 +110,14 @@ public class RolDePago implements Serializable{
 
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
+	}
+
+	public List<Detalle> getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(List<Detalle> detalles) {
+		this.detalles = detalles;
 	}
 
 	@Override
