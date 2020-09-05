@@ -1,6 +1,6 @@
 function save(){	
 	var dataForm = objectifyForm($("#frmCargo").serializeArray());	
-	var requestBody = JSON.stringify(dataForm);		
+	var requestBody = JSON.stringify(dataForm);
 	$.ajax({
 		url : developURL + "cargo/save",
 		method : 'POST',
@@ -8,14 +8,16 @@ function save(){
 		headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},		
 		data : requestBody,
 		success : function(response){
-			console.log(response);
+			
+			listCargos();
+			$('#cargoModal').modal('hide');
 		},
 		error : function(err){
 			console.log(err);
 		}		
 	});
-	
 }
+
 
 function create(){
 	var id = $("#idarea").val();	
@@ -23,10 +25,11 @@ function create(){
 	$.ajax({
 		url : "/cargo/create/" + id,
 		method : 'GET',
-		success : function(response){		
-
+		success : function(response){	
+			console.log(response);
 			$("#contentCargo").empty();
 			$("#contentCargo").html(response);
+			
 		},
 		error : function(err){
 			console.log(err);
@@ -34,13 +37,13 @@ function create(){
 	});
 }
 
-function list(){
+function listCargos(){
 	var id = $("#idarea").val();
 	$.ajax({
 		url : "/cargo/list/" + id,
 		method : 'GET',
 		success : function(response){
-			console.log(response);
+			//console.log(response);
 			$("#listCargo").empty();
 			$("#listCargo").html(response);
 		},
@@ -52,18 +55,21 @@ function list(){
 
 $(document).ready(function(){
 	
-	console.log("Página cargada...");
 	
 	$("#btnAdd").click(function(){
-		create();		
+		create();
+		
 	});
+	
 	
 	$("#btnSubmit").click(function(){
 		save();		
+		
 	});
 	
 	$("#tab--2").click(function(){
-		list();		
+		listCargos();		
 	});
+	listCargos();
 	
 });

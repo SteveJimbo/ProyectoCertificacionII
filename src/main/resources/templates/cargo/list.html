@@ -14,14 +14,17 @@
 				<td th:text="${c.nombre}"></td>
 				<td th:text="${c.descripcion}"></td>
 				<td th:text="${c.sueldo}"></td>
+				
 				<td>
-					<a class="btn btn-info btn-sm" th:href="@{/cargo/update/} + ${c.idcargo}">
-					<i class="fas fa-pencil-alt"></i>&nbsp;</a>
+					<button class="btn btn-info btn-sm btnUpdateCargo" data-toggle="modal" data-target="#cargoModal" th:value="${c.idcargo}"><i class="fas fa-pencil-alt"></i></button>
+
 					<button class="btn btn-danger btn-sm btnDelete" th:value="${c.idcargo}"><i class="fas fa-trash"></i></button>
+					
 				</td>
 			</tr>
 		</tbody>
-	</table>   
+		
+	</table>
 <script>
   $(function () {
     $('#tabla').DataTable({
@@ -36,5 +39,6 @@
   });
 </script>
 <script th:src="@{/js/cargo/delete.js}"></script>
+<script th:src="@{/js/cargo/update.js}"></script>
 </body>
 </html>

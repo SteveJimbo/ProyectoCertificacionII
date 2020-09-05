@@ -10,8 +10,8 @@ function onDelete(id,button){
 			  $.ajax({
 					url : "/cargo/delete/" + id,
 					method : 'GET',
-					success : function(response){
-
+					success : function(){
+						
 						button.parents("tr").remove();
 						swal.fire("Realizado", "El registro ha sido eliminado con éxito", "success");
 						
@@ -27,19 +27,6 @@ function onDelete(id,button){
 		
 }
 
-function list(){
-	$.ajax({
-		url : "/club/list/",
-		method : 'GET',
-		success : function(response){
-			$("#listClub").empty();
-			$("#listClub").html(response);
-		},
-		error : function(err){
-			console.log(err);
-		}		
-	});	
-}
 
 $(document).ready(function(){
 	

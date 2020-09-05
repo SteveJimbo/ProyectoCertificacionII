@@ -47,17 +47,21 @@ public class CargoController {
 	@GetMapping(value="/update/{id}")
 	public String update(@PathVariable(value="id") Integer id, Model model) {
 		Cargo cargo = srvCargo.findById(id);
+		cargo.setAreaid(cargo.getArea().getIdarea());
+		System.out.println(cargo.getAreaid());
 		model.addAttribute("cargo", cargo);
 		//el metodo toString se ejecuta por default
-		model.addAttribute("title","Actualizando el registro de: "+ cargo.toString());
 		return "cargo/form";
 	}
 	
 	@GetMapping(value="/delete/{id}")
 	public String delete(@PathVariable(value="id") Integer id, Model model) {
+		Cargo cargo = this.srvCargo.findById(id);
+		int idArea = cargo.getAreaid();
 		this.srvCargo.delete(id);
+		
 		//despues de borrar se hace un redirect a una accion por invocar
-		return "redirect:/cargo/list";
+		return "redirect:/cargo/list/"+idArea;
 	}
 	
 	@GetMapping(value="/list/{id}")
@@ -72,9 +76,7 @@ public class CargoController {
 	public String save(@RequestBody @Valid Cargo cargo, BindingResult result, Model model) {
 		try {
 			Area area = this.srvArea.findById(cargo.getAreaid());
-			
 			cargo.setArea(area);
-
 			this.srvCargo.save(cargo);			
 			return "cargo/list";
 		} catch (Exception ex) {	
@@ -82,6 +84,17 @@ public class CargoController {
 			return "cargo/form";
 		}	
 	
+	}
+	
+	@PostMapping(value="/saveSimple")
+	public String saveSimple(@RequestBody @Valid Cargo cargo, BindingResult result, Model model) {
+		try {
+			this.srvCargo.save(cargo);			
+			return "cargo/list";
+		} catch (Exception ex) {	
+			
+			return "cargo/form";
+		}
 	}
 	
 	
