@@ -8,7 +8,7 @@ function onDelete(id,button){
 		  cancelButtonColor: '#d33',
 		  preConfirm: ()=>{
 			  $.ajax({
-					url : "/penalidad/delete/" + id,
+					url : "/descuento/delete/" + id,
 					method : 'GET',
 					success : function(response){
 

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.contratacion.proyecto.models.entities.Area;
 import com.contratacion.proyecto.models.entities.Cargo;
 import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.services.IAreaService;
 import com.contratacion.proyecto.models.services.ICargoService;
 import com.contratacion.proyecto.models.services.ITrabajadorService;
 
@@ -28,13 +30,18 @@ public class TrabajadorController {
 	@Autowired
 	private ICargoService srvCargo;
 	
+	@Autowired
+	private IAreaService srvArea;
+	
 	@GetMapping(value="/create")
 	public String create(Model model) {
 		Trabajador trabajador = new Trabajador();
+		List<Area> areas = srvArea.findAll();
 		List<Cargo> cargos = srvCargo.findAll();
 		model.addAttribute("title","Registro de un nuevo Trabajador");
 		model.addAttribute("trabajador", trabajador);
 		model.addAttribute("cargos", cargos);
+		model.addAttribute("areas", areas);
 		return "trabajador/form";
 	}
 	

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-	<table class="table table-bordered table-hover">
+	<table class="table table-bordered table-hover" id="tablaCargos">
 		<thead>
 			<tr>
 				<th>Nombre</th>
@@ -25,19 +25,7 @@
 		</tbody>
 		
 	</table>
-<script>
-  $(function () {
-    $('#tabla').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 <script th:src="@{/js/cargo/delete.js}"></script>
 <script th:src="@{/js/cargo/update.js}"></script>
 </body>

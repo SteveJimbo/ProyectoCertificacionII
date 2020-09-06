@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="descuentos")
+@Table(name="bonos")
 public class Bono {
 
 	private static final long serialVersionUID = 1L;

@@ -22,7 +22,7 @@
 		<div class="card-header">
 			<h3 class="card-title">Ingrese los datos</h3>
 		</div>
-		<form role="form" class="user" th:action="@{/penalidad/save}" th:object="${penalidad}" method="post">
+		<form role="form" class="user" th:action="@{/descuento/save}" th:object="${descuento}" method="post">
 			<div class="card-body">
 				<label for="nombre">Nombre</label>
 				<div class="input-group mb-3">
@@ -50,10 +50,10 @@
 						<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
 					</div>
 					<div class="col-sm-6 mb-3 mb-sm-0">
-						<a th:href="@{/penalidad/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+						<a th:href="@{/descuento/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
 					</div>
 				</div>
-				<input type="hidden" th:field="*{idpenalidad}" />
+				<input type="hidden" th:field="*{iddescuento}" />
 			
 			</div>
 						

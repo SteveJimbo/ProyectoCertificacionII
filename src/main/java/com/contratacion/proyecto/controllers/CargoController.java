@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.contratacion.proyecto.models.services.IAreaService;
 import com.contratacion.proyecto.models.services.ICargoService;
@@ -95,6 +96,11 @@ public class CargoController {
 			
 			return "cargo/form";
 		}
+	}
+	@GetMapping(value="/search/{id}")
+	public @ResponseBody List<Cargo> search(@PathVariable(value="id") Integer id){
+		List<Cargo> list = srvCargo.findByArea(id);
+		return list;
 	}
 	
 	
