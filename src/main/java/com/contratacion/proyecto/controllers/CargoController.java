@@ -99,7 +99,10 @@ public class CargoController {
 	}
 	@GetMapping(value="/search/{id}")
 	public @ResponseBody List<Cargo> search(@PathVariable(value="id") Integer id){
+		System.out.println("Método");
+		
 		List<Cargo> list = srvCargo.findByArea(id);
+		
 		return list;
 	}
 	
