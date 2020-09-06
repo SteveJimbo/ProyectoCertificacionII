@@ -5,9 +5,15 @@ function list(){
 		success : function(response){
 			$("#adicionales").empty();
 			$("#adicionales").html(response);
+			total();
 		},
 		error : function(err){
-			console.log(err);
+			Swal.fire({
+				title : '¡Error!',
+				text : 'Error al recuperar los Datos',
+				icon : 'error',
+				button : 'Aceptar'
+			});
 		}		
 	});	
 }
@@ -21,7 +27,12 @@ function create(){
 			$("#contentFormulario").html(response);
 		},
 		error : function(err){
-			console.log(err);
+			Swal.fire({
+				title : '¡Error!',
+				text : 'Error al recuperar los Datos',
+				icon : 'error',
+				button : 'Aceptar'
+			});
 		}		
 	});
 }
@@ -40,10 +51,54 @@ function save(){
 			list();
 		},
 		error : function(err){
-			console.log(err);
+			Swal.fire({
+				title : '¡Error!',
+				text : 'Error al recuperar los Datos',
+				icon : 'error',
+				button : 'Aceptar'
+			});
 		}		
 	});
 	
+}
+
+function cargarOb(){
+	var selectBox = document.getElementById("trabajador.idtrabajador");
+    var id = selectBox.options[selectBox.selectedIndex].value;
+	$.ajax({
+		url : "/roldepago/obligaciones/"+id,
+		method : 'GET',
+		success : function(response){
+			list();		
+		},
+		error : function(err){
+			Swal.fire({
+				title : '¡Error!',
+				text : 'Error al recuperar los Datos',
+				icon : 'error',
+				button : 'Aceptar'
+			});
+		}
+	});
+}
+
+function total(){
+	$.ajax({
+		url : "/roldepago/total",
+		method : 'GET',
+		success : function(response){
+			console.log(response)
+			document.getElementById("total").value = ""+response;			
+		},
+		error : function(err){
+			Swal.fire({
+				title : '¡Error!',
+				text : 'Error al recuperar los Datos',
+				icon : 'error',
+				button : 'Aceptar'
+			});
+		}
+	});
 }
 
 $(document).ready(function(){
@@ -55,5 +110,5 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		save();		
 	});
-		
+	
 });

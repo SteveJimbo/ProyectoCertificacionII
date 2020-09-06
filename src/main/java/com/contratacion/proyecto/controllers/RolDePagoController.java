@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.contratacion.proyecto.models.entities.Cargo;
 import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
 import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.services.DetalleService;
 import com.contratacion.proyecto.models.services.ICargoService;
 import com.contratacion.proyecto.models.services.IDescuentoService;
 import com.contratacion.proyecto.models.services.IRolDePagoService;
@@ -114,5 +116,43 @@ public class RolDePagoController {
 		RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
 		model.addAttribute("detalles", rol.getDetalles());
 		return "detalle/list";
+	}
+	
+	@GetMapping(value="/obligaciones/{id}")
+	public String obligaciones(@PathVariable(value="id") Integer id, Model model, HttpSession session) {
+		try {
+			Trabajador t = srvTrabajador.findById(id);
+			Detalle det = new Detalle();
+			det.setNombre("Sueldo");
+			det.setMonto(t.getCargo().getSueldo());
+			Detalle det2 = new Detalle();
+			det2.setNombre("IESS");
+			det2.setMonto(-(t.getCargo().getSueldo()*0.0945f));
+			RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
+			rol.getDetalles().add(det);
+			rol.getDetalles().add(det2);
+		} catch (Exception ex) {			
+			return ex.toString();
+		}	
+		
+		return "detalle/list";
+	}
+	
+	@GetMapping(value="/total")
+	public @ResponseBody Object total( Model model, HttpSession session) {
+		String tot = "";
+		try {
+			float total = 0;
+			RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
+			List<Detalle> detalles = rol.getDetalles();  
+			for(Detalle d : detalles) {
+				total += d.getMonto();
+			}
+			tot = ""+total;
+		} catch (Exception ex) {			
+			return ex.toString();
+		}	
+		
+		return tot;
 	}
 }
