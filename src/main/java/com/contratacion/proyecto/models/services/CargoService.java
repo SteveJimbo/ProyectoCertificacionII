@@ -1,5 +1,6 @@
 package com.contratacion.proyecto.models.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,14 @@ public class CargoService implements ICargoService{
 	public List<Cargo> findByArea(Integer id) {
 		try {
 			List<Cargo> resultado = dao.findByArea(id);
-			return resultado;
+			List<Cargo> cargos = new ArrayList<Cargo>();
+			for(int i = 0; i < resultado.size(); i++) {
+				if(resultado.get(i).getTrabajadores() != null) {
+					resultado.get(i).setTrabajadores(null);
+				}
+				cargos.add(resultado.get(i));
+			}
+			return cargos;
 		}
 		catch(Exception ex) {
 			System.out.println("Error =>" + ex.getMessage());

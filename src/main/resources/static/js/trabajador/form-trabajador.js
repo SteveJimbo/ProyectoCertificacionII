@@ -2,10 +2,12 @@ function selectCargos(){
 	console.log("select");
 	var selectBox = document.getElementById("area");
     var id = selectBox.options[selectBox.selectedIndex].value;
+    console.log("id :"+id);
 	$.ajax({
 		url : "/cargo/search/"+id,
 		method : 'GET',
 		success : function(response){
+			console.log(response);
 			$("#cargo").empty();			
 			var count = Object.keys(response).length;			
 			if(count > 0){								
@@ -19,10 +21,11 @@ function selectCargos(){
 				console.log("No hay cargos disponibles");				
 			}			
 		},
-		error : function(err){
+		error : function(response,err){
+			console.log(response);
 			Swal.fire({
 				title : '¡Error!',
-				text : 'Error al recuperar los Cargos',
+				text : 'error:'+err.Message,
 				icon : 'error',
 				button : 'Aceptar'
 			});
