@@ -1,3 +1,5 @@
+var descuentos = [];
+
 function list(){	
 	$.ajax({
 		url : "/roldepago/detalles",
@@ -87,7 +89,6 @@ function total(){
 		url : "/roldepago/total",
 		method : 'GET',
 		success : function(response){
-			console.log(response)
 			document.getElementById("total").value = ""+response;			
 		},
 		error : function(err){
@@ -101,6 +102,35 @@ function total(){
 	});
 }
 
+function listarDescuentos(){
+	$.ajax({
+		url : "/descuento/listaDescuentos",
+		method : 'GET',
+		success : function(response){
+			$.each(response, function(i, item){
+				if(!descuentos.includes(item.nombre)){
+					descuentos.push(item.nombre);
+				}
+			});			
+		},
+		error : function(err){
+			console.log(err);
+		}
+	});
+}
+
+
+function verificar(){
+	var selectBox = document.getElementById("nombre");
+    var bus = ""+selectBox.options[selectBox.selectedIndex].value;
+	var campo = document.getElementById("monto");
+	if(descuentos.includes(bus)){
+		campo.readOnly = true;
+	}else{
+		campo.readOnly = false;
+	}
+}
+
 $(document).ready(function(){
 	
 	$("#btnAdd").click(function(){
@@ -110,5 +140,7 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		save();		
 	});
+	
+	listarDescuentos();
 	
 });

@@ -22,7 +22,7 @@
                 <div class="col-12">
                   <h4>
                     <i class="fas fa-globe"></i> SISCON - Rol De Pago # <label style="font-weight:normal" th:text="${rolDePago.idrol}"></label>
-                    <small class="float-right">Fecha: <label style="font-weight:normal" th:text="${rolDePago.fechaImpresion()}"></label></small>
+                    <small class="float-right">Fecha: <label style="font-weight:normal" th:text="${rolDePago.fechaGeneracion()}"></label></small>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -63,9 +63,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>Sueldo Mensual</td>
-                      <td th:text="'$ '+${rolDePago.total}"></td>
+                    <tr th:each="d : ${rolDePago.detalles}">
+                    	<td th:text="${d.nombre}"></td>
+                    	<td th:text="${d.monto}"></td>
                     </tr>
                     </tbody>
                   </table>

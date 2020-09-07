@@ -13,6 +13,7 @@ public class DescuentoService implements IDescuentoService{
 
 	@Autowired
 	private IDescuento dao;
+	
 	@Override
 	public void save(Descuento c) {
 		dao.save(c);
@@ -33,6 +34,11 @@ public class DescuentoService implements IDescuentoService{
 	@Override
 	public List<Descuento> findAll() {
 		return (List<Descuento>) dao.findAll();
+	}
+
+	@Override
+	public Descuento findNombre(String nombre) {
+		return dao.findByNombre(nombre);
 	}
 
 	

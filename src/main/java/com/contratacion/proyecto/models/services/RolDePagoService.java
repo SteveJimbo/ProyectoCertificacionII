@@ -6,18 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.contratacion.proyecto.models.dao.IDetalle;
 import com.contratacion.proyecto.models.dao.IRolDePago;
+import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
 
 @Service
 public class RolDePagoService implements IRolDePagoService{
+	
 	@Autowired
 	private IRolDePago dao;
+	
+	@Autowired
+	private IDetalle daoDetalle;
 	
 	@Override
 	@Transactional
 	public void save(RolDePago r) {
-		dao.save(r);
+		try {
+			dao.save(r);
+			for(Detalle d : r.getDetalles()) {
+				d.setRolDePago(r);
+				daoDetalle.save(d);
+			}
+		}catch(Exception ex) {
+			throw ex;
+		}
 	}
 
 	@Override

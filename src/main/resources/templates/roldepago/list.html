@@ -32,7 +32,7 @@
 			<tr th:each="r : ${rolesDePago}">
 				<td th:text="${r.idrol}"></td>
 				<td th:text="${r.trabajador}"></td>
-				<td th:text="${r.fechaImpresion()}"></td>
+				<td th:text="${r.fechaGeneracion()}"></td>
 				<td th:text="${r.total}"></td>
 				<td>
 					<a class="btn btn-info btn-sm" th:href="@{/roldepago/update/} + ${r.idrol}">

@@ -1,6 +1,7 @@
 package com.contratacion.proyecto.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.contratacion.proyecto.models.entities.Cargo;
 import com.contratacion.proyecto.models.entities.Descuento;
@@ -37,12 +40,8 @@ public class RolDePagoController {
 	@Autowired
 	private ITrabajadorService srvTrabajador;
 	
-	
 	@Autowired
-	private IDescuentoService srvPenalidad;
-	
-	@Autowired
-	private ICargoService srvCargo;
+	private IDescuentoService srvDescuento;
 	
 	@GetMapping(value="/create")
 	public String create(Model model) {
@@ -68,7 +67,6 @@ public class RolDePagoController {
 	public String update(@PathVariable(value="id") Integer id, Model model) {
 		RolDePago rolDePago = srvRolDePago.findById(id);
 		model.addAttribute("rolDePago", rolDePago);
-		//el metodo toString se ejecuta por default
 		model.addAttribute("title","Actualizando el registro de: "+ rolDePago.toString());
 		return "roldepago/form";
 	}
@@ -76,7 +74,6 @@ public class RolDePagoController {
 	@GetMapping(value="/delete/{id}")
 	public String delete(@PathVariable(value="id") Integer id, Model model) {
 		this.srvRolDePago.delete(id);
-		//despues de borrar se hace un redirect a una accion por invocar
 		return "redirect:/roldepago/list";
 	}
 	
@@ -89,13 +86,18 @@ public class RolDePagoController {
 	}
 	
 	@PostMapping(value="/save")
-	public String save(RolDePago rolDePago, Model model) {
-		Trabajador t = srvTrabajador.findById(rolDePago.getTrabajador().getIdtrabajador());
-		//rolDePago.getTrabajador().setSanciones(srvPenalidad.findAll(t.getIdtrabajador()));//		
-		rolDePago.getTrabajador().setCargo(srvCargo.findById(t.getCargo().getIdcargo()));
-		List<Descuento> p = srvPenalidad.findAll();
-		rolDePago.calcularTotal(p);
-		this.srvRolDePago.save(rolDePago);
+	public String save(RolDePago rolDePago, Model model, SessionStatus status, RedirectAttributes flash, HttpSession session) {
+		rolDePago.setFechaGeneracion(Calendar.getInstance());
+		RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
+		rolDePago.setDetalles(rol.getDetalles());
+		/*List<Detalle> aux = new ArrayList<Detalle>();
+		for(Detalle d : rol.getDetalles()) {
+			aux.add(d);
+		}
+		rolDePago.getDetalles().addAll(aux);*/
+		srvRolDePago.save(rolDePago);
+		status.setComplete();
+		flash.addFlashAttribute("success", "Rol Generado Exitosamente");
 		return "redirect:/roldepago/retrieve/"+srvRolDePago.findLast();
 	}
 	
@@ -103,8 +105,15 @@ public class RolDePagoController {
 	@PostMapping(value = "/add", produces="application/json")
 	public @ResponseBody Object add(@RequestBody Detalle detalle, Model model, HttpSession session) {				
 		try {
+			Descuento d = srvDescuento.findNombre(detalle.getNombre());
 			RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
-			rol.getDetalles().add(detalle);
+			if(d == null) {
+				rol.getDetalles().add(detalle);
+			}else {
+				float m = d.getMonto()/100;
+				detalle.setMonto(-(rol.getTrabajador().getCargo().getSueldo()*m));
+				rol.getDetalles().add(detalle);
+			}
 			return detalle;
 		} catch (Exception ex) {			
 			return ex;
@@ -121,16 +130,37 @@ public class RolDePagoController {
 	@GetMapping(value="/obligaciones/{id}")
 	public String obligaciones(@PathVariable(value="id") Integer id, Model model, HttpSession session) {
 		try {
+			boolean pv = true;
 			Trabajador t = srvTrabajador.findById(id);
-			Detalle det = new Detalle();
-			det.setNombre("Sueldo");
-			det.setMonto(t.getCargo().getSueldo());
-			Detalle det2 = new Detalle();
-			det2.setNombre("IESS");
-			det2.setMonto(-(t.getCargo().getSueldo()*0.0945f));
+			t.getCargo().setTrabajadores(null);
 			RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
-			rol.getDetalles().add(det);
-			rol.getDetalles().add(det2);
+			rol.setTrabajador(t);
+			List<Detalle> detalles = rol.getDetalles();
+			for(Detalle d : detalles) {
+				if(d.getNombre().equals("Sueldo")) {
+					d.setMonto(t.getCargo().getSueldo());
+					pv = false;
+				}
+				if(d.getNombre().equals("IESS")) {
+					d.setMonto(-(t.getCargo().getSueldo()*0.0945f));
+					pv = false;
+				}
+				if(srvDescuento.findNombre(d.getNombre()) != null) {
+					Descuento des = srvDescuento.findNombre(d.getNombre()) ;
+					float m = des.getMonto()/100;
+					d.setMonto(-(t.getCargo().getSueldo()*m));
+				}
+			}
+			if(pv) {
+				Detalle det = new Detalle();
+				det.setNombre("Sueldo");
+				det.setMonto(t.getCargo().getSueldo());
+				Detalle det2 = new Detalle();
+				det2.setNombre("IESS");
+				det2.setMonto(-(t.getCargo().getSueldo()*0.0945f));
+				rol.getDetalles().add(det);
+				rol.getDetalles().add(det2);
+			}
 		} catch (Exception ex) {			
 			return ex.toString();
 		}	

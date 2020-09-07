@@ -10,4 +10,5 @@ public interface IDescuentoService {
 	public Descuento findById(Integer id);
 	public void delete(Integer id);
 	public List<Descuento> findAll();
+	public Descuento findNombre(String nombre);
 }

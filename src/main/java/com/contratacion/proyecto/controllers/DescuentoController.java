@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.services.IDescuentoService;
@@ -62,5 +63,15 @@ public class DescuentoController {
 	public String save(Descuento descuento, Model model) {
 		this.srvDescuento.save(descuento);
 		return "redirect:/descuento/list";
+	}
+	
+	@GetMapping(value = "/listaDescuentos", produces="application/json")
+	public @ResponseBody List<Descuento> listaDescuentos(Model model) {				
+		try {			
+			return this.srvDescuento.findAll();
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}		
 	}
 }

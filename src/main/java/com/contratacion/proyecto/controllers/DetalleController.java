@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.contratacion.proyecto.models.entities.Bono;
+import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
+import com.contratacion.proyecto.models.services.IBonoService;
+import com.contratacion.proyecto.models.services.IDescuentoService;
 import com.contratacion.proyecto.models.services.IDetalleService;
 
 @Controller
@@ -20,11 +24,21 @@ public class DetalleController {
 	@Autowired
 	private IDetalleService srvDetalle;
 	
+	@Autowired
+	private IDescuentoService srvDescuentos;
+	
+	@Autowired
+	private IBonoService srvBonos;
+	
 	@GetMapping(value="/create")
 	public String create(Model model) {
 		Detalle detalle = new Detalle();
+		List<Descuento> descuentos = srvDescuentos.findAll();
+		List<Bono> bonos = srvBonos.findAll();
 		model.addAttribute("title","Registro de un nuevo detalle");
 		model.addAttribute("detalle", detalle);
+		model.addAttribute("descuentos", descuentos);
+		model.addAttribute("bonos", bonos);
 		return "detalle/form";
 	}
 	
