@@ -1,9 +1,12 @@
+var barChartData;
+
 function report2(){	
 	var selectBox = document.getElementById("anio");
     var id = selectBox.options[selectBox.selectedIndex].value;
 	var color = Chart.helpers.color;
 	$.ajax({
-		url : "/roldepago/dataRptCantidadMensual/"+2020,
+		//url : "/roldepago/dataRptCantidadMensual/"+2020,
+		url : "/roldepago/dataRptCantidadMensual/"+id,
 		method : 'GET',
 		success : function(response){
 			
@@ -21,7 +24,7 @@ function report2(){
 			$.each(response, function(i, item){
 				toLabels.push(item.mes);
 				toCant.push(item.cantidad);
-				toSum.push(0);
+				toSum.push(item.sumatoria);
 			});
 			console.log(toLabels);
 			console.log(toCant);
@@ -30,7 +33,7 @@ function report2(){
 					label: "Cantidad",
 					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
 					borderWidth: 1,
-					data: [1,2,3,4,5,6,7,8,9,10,11,12],
+					data: toCant,
 				}
 				console.log(dat);
 				toData.push(dat);
@@ -38,17 +41,28 @@ function report2(){
 					label: "Sumatoria",
 					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
 					borderWidth: 1,
-					data: [1,2,3,4,5,6,7,8,9,10,11,12],
+					data: toSum,
 				}
 				console.log(dat2);
 				toData.push(dat2);
 									
-			var barChartData = {
+			barChartData = {
 				labels: toLabels,
 				datasets: toData
 			};
+			
+			cargar();	
+			
+		},
+		error : function(err){
+			console.log(err);
+		}		
+	});	
+}
 
-			window.onload = function() {
+function cargar(){
+	$(document).ready(function(){
+	
 				var ctx = document.getElementById('canvas').getContext('2d');
 				window.myBar = new Chart(ctx, {
 					type: 'bar',
@@ -72,69 +86,5 @@ function report2(){
 						
 					}
 				});
-		
-			};	
-			
-		},
-		error : function(err){
-			console.log(err);
-		}		
-	});	
+	});
 }
-
-function report3(){
-	
-	var color = Chart.helpers.color;
-	var barChartData = {
-		labels: ['Certificación I', 'Ingeniería Web', 'Métodos numéricos', 'Estructura de datos', 'Metodología'],
-		datasets: [{
-			label: 'diegoismael',
-			backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
-			borderWidth: 1,
-			data: [
-				10,
-				2,
-				5,
-				9,
-				8				
-			]
-		}, {
-			label: 'dsanchez',
-			backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
-			borderWidth: 1,
-			data: [
-				16,
-				12,
-				4,
-				0,
-				9
-			]
-		}]
-
-	};
-
-	window.onload = function() {
-		var ctx = document.getElementById('canvas').getContext('2d');
-		window.myBar = new Chart(ctx, {
-			type: 'bar',
-			data: barChartData,
-			options: {
-				responsive: true,
-				legend: {
-					position: 'top',
-				},
-				title: {
-					display: true,
-					text: 'Matrículas por materia y por usuario'
-				}
-			}
-		});
-
-	};		
-}
-
-$(document).ready(function(){
-	
-	report2();		
-
-});
