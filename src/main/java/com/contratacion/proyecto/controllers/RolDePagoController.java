@@ -272,10 +272,11 @@ public class RolDePagoController {
 		return "roldepago/rptMontoArea";				
 	}
 	
-	@GetMapping(value = "/dataRptCantidadMensual", produces="application/json")
-	public @ResponseBody List<RptCantidadMensual> dataRptCantidadMensual(Model model) {				
-		try {			
-			return srvRolDePago.rptCantidadMensual("2020");
+	@GetMapping(value = "/dataRptCantidadMensual/{id}", produces="application/json")
+	public @ResponseBody List<RptCantidadMensual> dataRptCantidadMensual(@PathVariable(value="id") Integer id, Model model) {				
+		try {
+			String anio = ""+id;
+			return srvRolDePago.rptCantidadMensual(anio);
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return null;
