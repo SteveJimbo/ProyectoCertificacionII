@@ -2,7 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout :: frgHead"></head>
-<body class="hold-transition register-page" th:style="'background-image:url(' + @{/inicio/assets/img/ciudad.jpg} + ');'">
+
+<body  class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+
 <div class="register-box">
   
   <div class="card info-box">
@@ -93,7 +106,7 @@
             <button type="submit" class="btn btn-success btn-block">Guardar</button>
           </div>
           <div class="col-4">
-            <a th:href="@{/}" class="btn btn-danger btn-blobk">Cancelar</a>
+           <button type="reset" class="btn btn-danger btn-block">Cancelar</button>
           </div>
           <!-- /.col -->
         </div>
@@ -111,6 +124,13 @@
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 <div class="row">
 			<div class="col-12">
 				<div id="success-alert" th:if="${success != null}">
@@ -144,7 +164,8 @@
 		</div>
 <!-- /.register-box -->
 
-
+<div th:replace="layout :: frgFooter"></div>	
+</div>
 <div th:replace="layout :: frgScripts"></div>
 
 </body>

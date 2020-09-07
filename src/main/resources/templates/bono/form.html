@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+<!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
+
+<div class="col-md-6">
+	<div class="card card-info">
+		<div class="card-header">
+			<h3 class="card-title">Ingrese los datos</h3>
+		</div>
+		<form role="form" class="user" th:action="@{/bono/save}" th:object="${bono}" method="post">
+			<div class="card-body">
+				<label for="nombre">Nombre</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input  type="text" class="form-control form-control-user" th:field="*{nombre}" placeholder="Nombre">
+				</div>
+				
+				<label for="nombre">Descripci&oacute;n</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Abc</span>
+					</div>
+					<input type="text" class="form-control form-control-user" th:field="*{descripcion}" placeholder="Descripci&oacute;n">
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-6 mb-3 mb-sm-0">
+						<input type="submit" class="btn btn-success btn-user btn-block" value="Guardar" />
+					</div>
+					<div class="col-sm-6 mb-3 mb-sm-0">
+						<a th:href="@{/bono/list}" class="btn btn-danger btn-user btn-block">Cancelar</a>
+					</div>
+				</div>
+				<input type="hidden" th:field="*{idbono}" />
+			
+			</div>
+						
+		</form>
+	</div>
+</div>
+
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+
+</body>
+</html>

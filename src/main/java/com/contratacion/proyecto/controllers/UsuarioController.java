@@ -58,7 +58,7 @@ public class UsuarioController {
 		catch(Exception ex) {
 			flash.addFlashAttribute("error", "El usuario no pudo ser agregado.");
 		}
-		return "redirect:/login";		
+		return "redirect:/sistema.html";		
 	} 
 	
 }

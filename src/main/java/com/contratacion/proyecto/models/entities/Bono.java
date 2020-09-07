@@ -63,6 +63,12 @@ public class Bono {
 	public void setDetalle(Detalle detalle) {
 		this.detalle = detalle;
 	}
+
+	@Override
+	public String toString() {
+		return this.nombre;
+	}
+	
 	
 	
 	
