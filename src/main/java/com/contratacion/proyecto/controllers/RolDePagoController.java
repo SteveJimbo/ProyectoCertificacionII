@@ -24,6 +24,7 @@ import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
 import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.reporting.RptCantidadMensual;
 import com.contratacion.proyecto.models.reporting.RptMontoArea;
 import com.contratacion.proyecto.models.services.DetalleService;
 import com.contratacion.proyecto.models.services.ICargoService;
@@ -269,5 +270,21 @@ public class RolDePagoController {
 	@GetMapping(value = "/rptMontoArea")
 	public String rptMatriculasUsuario(Model model) {
 		return "roldepago/rptMontoArea";				
+	}
+	
+	@GetMapping(value = "/dataRptCantidadMensual", produces="application/json")
+	public @ResponseBody List<RptCantidadMensual> dataRptCantidadMensual(Model model) {				
+		try {			
+			return null;
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}		
+	}
+	
+	@GetMapping(value = "/rptCantidadMensual")
+	public String rptCanttidadMensual(Model model) {
+		model.addAttribute("title","Reporte de la Cantidad de Roles de Pago por Mes");
+		return "roldepago/rptCantidadMensual";				
 	}
 }
