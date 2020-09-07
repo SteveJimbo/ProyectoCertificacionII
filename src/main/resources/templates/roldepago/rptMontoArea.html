@@ -20,8 +20,8 @@
 	
 	<label>Seleccione el mes y a&ntilde;o del que desea el Reporte:</label>
 	
-	<div class="col-md-3">
-					<select id="mes" class="form-control select2bs4" >
+	<div class="col-md-2">
+					<select id="mes" onchange="report2()" class="form-control select2bs4" >
 						<option value=0>-- Seleccione Mes --</option>
 						<option value=1>01 - Enero</option>
 						<option value=2>02 - Febrero</option>
@@ -36,15 +36,15 @@
 						<option value=11>11 - Noviembre</option>
 						<option value=12>12 - Diciembre</option>
 					</select></div>
-					<div class="col-md-3">
-	<select id="area" onchange="" class="form-control select2bs4" >
+					<div class="col-md-2">
+	<select id="area" onchange="report2()" class="form-control select2bs4" >
 		<option value=0>-- Seleccione &Aacute;rea --</option>
 		<option th:each="a : ${areas}" th:value="${a.idarea}" th:text="${a}"></option>
 	</select>
 	</div>
 					
-	<div class="col-md-3">
-	<select id="anio" onchange="" class="form-control select2bs4" >
+	<div class="col-md-2">
+	<select id="anio" onchange="report2()" class="form-control select2bs4" >
 		<option value=0>-- Seleccione A&ntilde;o --</option>
 		<option value=2019>A&ntilde;o 2019</option>
 		<option value=2020>A&ntilde;o 2020</option>

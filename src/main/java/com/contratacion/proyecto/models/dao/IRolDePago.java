@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.contratacion.proyecto.models.entities.RolDePago;
-import com.contratacion.proyecto.models.reporting.RptMontoArea;
 
 public interface IRolDePago extends CrudRepository<RolDePago, Integer>{
 	
