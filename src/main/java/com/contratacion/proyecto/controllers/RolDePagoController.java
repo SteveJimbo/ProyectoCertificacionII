@@ -275,7 +275,7 @@ public class RolDePagoController {
 	@GetMapping(value = "/dataRptCantidadMensual", produces="application/json")
 	public @ResponseBody List<RptCantidadMensual> dataRptCantidadMensual(Model model) {				
 		try {			
-			return null;
+			return srvRolDePago.rptCantidadMensual("2020");
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return null;

@@ -17,7 +17,17 @@
 <div class="row">
 <!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
 
-<img src="https://i0.wp.com/mundowin.com/wp-content/uploads/2019/06/extract-rar-access-denied-fix.png?w=832&ssl=1">
+<div class="academy-courses-area section-padding-100-0">
+        <div class="container">
+            <!-- div class="row">
+            	<canvas id="chart-area-1"></canvas>            	
+            </div> -->
+            <div class="row">
+            	<!--  canvas id="chart-area-2" style="display: block; width: 349px; height: 174px;" width="349" height="174" class="chartjs-render-monitor"></canvas>-->
+            	<canvas id="canvas" style="display: block; width: 654px; height: 327px;" width="654" height="327" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!-- /.row (main row) -->
@@ -30,14 +40,6 @@
 </div>
 <!-- ./wrapper -->	
 <div th:replace="layout :: frgScripts"></div>
-<script th:src="@{/js/roldepago/rptMontoArea.js}"></script>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-  })
-</script>
+<script th:src="@{/js/roldepago/rptCantidadMensual.js}"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.contratacion.proyecto.models.services;
 import java.util.List;
 
 import com.contratacion.proyecto.models.entities.RolDePago;
+import com.contratacion.proyecto.models.reporting.RptCantidadMensual;
 import com.contratacion.proyecto.models.reporting.RptMontoArea;
 
 public interface IRolDePagoService {
@@ -13,4 +14,5 @@ public interface IRolDePagoService {
 	public Integer findLast();
 	public boolean validarRol(RolDePago rol);
 	public List<RptMontoArea> rptMontoArea(String mes, String anio);
+	public List<RptCantidadMensual> rptCantidadMensual(String Anio);
 }
