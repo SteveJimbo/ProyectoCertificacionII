@@ -13,6 +13,6 @@ public interface IRolDePagoService {
 	public List<RolDePago> findAll();
 	public Integer findLast();
 	public boolean validarRol(RolDePago rol);
-	public List<RptMontoArea> rptMontoArea(String mes, String anio);
+	public List<RptMontoArea> rptMontoArea(Integer mes, String anio, Integer idarea);
 	public List<RptCantidadMensual> rptCantidadMensual(String Anio);
 }

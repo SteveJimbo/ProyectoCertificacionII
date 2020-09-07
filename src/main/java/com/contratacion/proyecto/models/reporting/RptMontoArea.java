@@ -8,6 +8,7 @@ public class RptMontoArea implements Serializable{
 	
 	private String area;
 	private Float monto;
+	
 	public RptMontoArea(String area, Float monto) {
 		super();
 		this.area = area;

@@ -7,10 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.contratacion.proyecto.models.dao.IArea;
 import com.contratacion.proyecto.models.dao.IDetalle;
 import com.contratacion.proyecto.models.dao.IRolDePago;
+import com.contratacion.proyecto.models.dao.ITrabajador;
+import com.contratacion.proyecto.models.entities.Area;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
+import com.contratacion.proyecto.models.entities.Trabajador;
 import com.contratacion.proyecto.models.reporting.RptCantidadMensual;
 import com.contratacion.proyecto.models.reporting.RptMontoArea;
 
@@ -22,6 +26,12 @@ public class RolDePagoService implements IRolDePagoService{
 	
 	@Autowired
 	private IDetalle daoDetalle;
+	
+	@Autowired
+	private IArea daoArea;
+	
+	@Autowired
+	private ITrabajador daoTrabajador;
 	
 	@Override
 	@Transactional
@@ -75,8 +85,64 @@ public class RolDePagoService implements IRolDePagoService{
 	}
 
 	@Override
-	public List<RptMontoArea> rptMontoArea(String mes, String anio) {
-		return null;
+	public List<RptMontoArea> rptMontoArea(Integer mes, String anio, Integer idarea) {
+		List<RptMontoArea> resultado = new ArrayList<RptMontoArea>();
+		List<RolDePago> roles = new ArrayList<RolDePago>();
+		Area a = daoArea.findById(idarea).get();
+		List<Trabajador> trabajadores = (List<Trabajador>)daoTrabajador.findAll();
+		for(Trabajador t : trabajadores) {
+			if(t.getArea().getIdarea() == idarea) {
+				roles.addAll(dao.findByTrabajador(t.getIdtrabajador()));
+			}
+		}
+		String mese = "";
+		switch(mes){
+			case 1:
+				mese="Enero";
+				break;
+			case 2:
+				mese="Febrero";
+				break;
+			case 3:
+				mese="Marzo";
+				break;
+			case 4:
+				mese="Abril";
+				break;
+			case 5:
+				mese="Mayo";
+				break;
+			case 6:
+				mese="Junio";
+				break;
+			case 7:
+				mese="Julio";
+				break;
+			case 8:
+				mese="Agosto";
+				break;
+			case 9:
+				mese="Septiembre";
+				break;
+			case 10:
+				mese="Octubre";
+				break;
+			case 11:
+				mese="Noviembre";
+				break;
+			case 12:
+				mese="Diciembre";
+				break;
+		};
+		Float monto = 0.0f;
+		for(RolDePago r : roles) {
+			if(r.getAnio().equals(anio) && r.getMes().equals(mese)) {
+				monto+=r.getTotal();
+			}
+		}
+		
+		resultado.add(new RptMontoArea(a.getNombre(),monto));
+		return resultado;
 	}
 	
 	@Override

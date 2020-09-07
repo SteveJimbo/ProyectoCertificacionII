@@ -17,8 +17,51 @@
 <div class="row">
 <!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
 
-<img src="https://i0.wp.com/mundowin.com/wp-content/uploads/2019/06/extract-rar-access-denied-fix.png?w=832&ssl=1">
-
+	
+	<label>Seleccione el mes y a&ntilde;o del que desea el Reporte:</label>
+	
+	<div class="col-md-3">
+					<select id="mes" class="form-control select2bs4" >
+						<option value=0>-- Seleccione Mes --</option>
+						<option value=1>01 - Enero</option>
+						<option value=2>02 - Febrero</option>
+						<option value=3>03 - Marzo</option>
+						<option value=4>04 - Abril</option>
+						<option value=5>05 - Mayo</option>
+						<option value=6>06 - Junio</option>
+						<option value=7>07 - Julio</option>
+						<option value=8>08 - Agosto</option>
+						<option value=9>09 - Septiembre</option>
+						<option value=10>10 - Octubre</option>
+						<option value=11>11 - Noviembre</option>
+						<option value=12>12 - Diciembre</option>
+					</select></div>
+					<div class="col-md-3">
+	<select id="area" onchange="" class="form-control select2bs4" >
+		<option value=0>-- Seleccione &Aacute;rea --</option>
+		<option th:each="a : ${areas}" th:value="${a.idarea}" th:text="${a}"></option>
+	</select>
+	</div>
+					
+	<div class="col-md-3">
+	<select id="anio" onchange="" class="form-control select2bs4" >
+		<option value=0>-- Seleccione A&ntilde;o --</option>
+		<option value=2019>A&ntilde;o 2019</option>
+		<option value=2020>A&ntilde;o 2020</option>
+	</select>
+	</div>
+	
+	<div class="academy-courses-area section-padding-100-0">
+        <div class="container">
+            <!-- div class="row">
+            	<canvas id="chart-area-1"></canvas>            	
+            </div> -->
+            <div class="row">
+            	<!--  canvas id="chart-area-2" style="display: block; width: 349px; height: 174px;" width="349" height="174" class="chartjs-render-monitor"></canvas>-->
+            	<canvas id="canvas" style="display: block; width: 654px; height: 327px;" width="654" height="327" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->

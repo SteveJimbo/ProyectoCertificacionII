@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.contratacion.proyecto.models.entities.Area;
 import com.contratacion.proyecto.models.entities.Cargo;
 import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
@@ -27,6 +28,7 @@ import com.contratacion.proyecto.models.entities.Trabajador;
 import com.contratacion.proyecto.models.reporting.RptCantidadMensual;
 import com.contratacion.proyecto.models.reporting.RptMontoArea;
 import com.contratacion.proyecto.models.services.DetalleService;
+import com.contratacion.proyecto.models.services.IAreaService;
 import com.contratacion.proyecto.models.services.ICargoService;
 import com.contratacion.proyecto.models.services.IDescuentoService;
 import com.contratacion.proyecto.models.services.IRolDePagoService;
@@ -45,6 +47,9 @@ public class RolDePagoController {
 	
 	@Autowired
 	private IDescuentoService srvDescuento;
+	
+	@Autowired
+	private IAreaService srvAreas;
 	
 	@GetMapping(value="/create")
 	public String create(Model model) {
@@ -258,10 +263,11 @@ public class RolDePagoController {
 		return tot;
 	}
 	
-	@GetMapping(value = "/dataRptMontoArea", produces="application/json")
-	public @ResponseBody List<RptMontoArea> dataRptMontoArea(Model model) {				
-		try {			
-			return this.srvRolDePago.rptMontoArea("Febrero", "2020");
+	@GetMapping(value = "/dataRptMontoArea/{id}/{id2}/{id3}", produces="application/json")
+	public @ResponseBody List<RptMontoArea> dataRptMontoArea(@PathVariable(value="id") Integer id, @PathVariable(value="id2") Integer id2, @PathVariable(value="id3") Integer id3, Model model) {				
+		try {
+			String ano = ""+id;
+			return this.srvRolDePago.rptMontoArea(id2 , ano, id3);
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return null;
@@ -269,6 +275,9 @@ public class RolDePagoController {
 	}
 	@GetMapping(value = "/rptMontoArea")
 	public String rptMatriculasUsuario(Model model) {
+		List<Area> areas = srvAreas.findAll();
+		model.addAttribute("title","Reporte de la Sumatoria en un Área");
+		model.addAttribute("areas",areas);
 		return "roldepago/rptMontoArea";				
 	}
 	
