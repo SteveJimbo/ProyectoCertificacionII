@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+<div class="wrapper">
+<div th:replace="layout :: frgNavbar"></div>
+<div th:replace="layout :: frgSidebar"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<div th:replace="layout :: frgHeader"></div>
+<!-- Main content -->
+<section class="content">
+<div class="container-fluid">
+<!-- Main row -->
+<div class="row">
+<!--$$$ CONTENIDOOOOOOOOOOOOOOOO $$$-->
+
+<img src="https://i0.wp.com/mundowin.com/wp-content/uploads/2019/06/extract-rar-access-denied-fix.png?w=832&ssl=1">
+
+</div>
+<!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div th:replace="layout :: frgFooter"></div>	
+</div>
+<!-- ./wrapper -->	
+<div th:replace="layout :: frgScripts"></div>
+<script th:src="@{/js/roldepago/rptMontoArea.js}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  })
+</script>
+</body>
+</html>

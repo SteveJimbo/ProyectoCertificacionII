@@ -10,6 +10,7 @@ import com.contratacion.proyecto.models.dao.IDetalle;
 import com.contratacion.proyecto.models.dao.IRolDePago;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
+import com.contratacion.proyecto.models.reporting.RptMontoArea;
 
 @Service
 public class RolDePagoService implements IRolDePagoService{
@@ -69,5 +70,10 @@ public class RolDePagoService implements IRolDePagoService{
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public List<RptMontoArea> rptMontoArea(String mes, String anio) {
+		return null;
 	}
 }

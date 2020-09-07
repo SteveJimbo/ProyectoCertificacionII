@@ -24,11 +24,13 @@ import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
 import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.reporting.RptMontoArea;
 import com.contratacion.proyecto.models.services.DetalleService;
 import com.contratacion.proyecto.models.services.ICargoService;
 import com.contratacion.proyecto.models.services.IDescuentoService;
 import com.contratacion.proyecto.models.services.IRolDePagoService;
 import com.contratacion.proyecto.models.services.ITrabajadorService;
+
 
 @Controller
 @SessionAttributes("rolDePago")
@@ -253,5 +255,19 @@ public class RolDePagoController {
 		}	
 		
 		return tot;
+	}
+	
+	@GetMapping(value = "/dataRptMontoArea", produces="application/json")
+	public @ResponseBody List<RptMontoArea> dataRptMontoArea(Model model) {				
+		try {			
+			return this.srvRolDePago.rptMontoArea("Febrero", "2020");
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}		
+	}
+	@GetMapping(value = "/rptMontoArea")
+	public String rptMatriculasUsuario(Model model) {
+		return "roldepago/rptMontoArea";				
 	}
 }
