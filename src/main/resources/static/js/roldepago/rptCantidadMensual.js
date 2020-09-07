@@ -55,12 +55,16 @@ function report(){
 }
 
 function report3(){	
+	var selectBox = document.getElementById("anio");
+    var id = selectBox.options[selectBox.selectedIndex].value;
 	var color = Chart.helpers.color;
 	$.ajax({
-		url : "/roldepago/dataRptCantidadMensual",
+		url : "/roldepago/dataRptCantidadMensual/"+id,
 		method : 'GET',
 		success : function(response){
+			
 			console.log(response);
+			
 			var toData = [];
 			var toLabels = [];
 			var Users = [];
@@ -197,6 +201,6 @@ function report2(){
 
 $(document).ready(function(){
 	
-	report3();		
+	//report3();		
 
 });
