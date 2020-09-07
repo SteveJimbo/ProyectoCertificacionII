@@ -10,4 +10,5 @@ public interface IRolDePagoService {
 	public void delete(Integer id);
 	public List<RolDePago> findAll();
 	public Integer findLast();
+	public boolean validarRol(RolDePago rol);
 }

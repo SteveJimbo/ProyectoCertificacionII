@@ -59,4 +59,15 @@ public class RolDePagoService implements IRolDePagoService{
 		RolDePago rol = roles.get(roles.size()-1);
 		return rol.getIdrol();
 	}
+	
+	@Override
+	@Transactional
+	public boolean validarRol(RolDePago rol) {
+		for(RolDePago r : dao.findByTrabajador(rol.getTrabajador().getIdtrabajador())) {
+			if(r.getMes().equals(rol.getMes()) && r.getAnio().equals(rol.getAnio())) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

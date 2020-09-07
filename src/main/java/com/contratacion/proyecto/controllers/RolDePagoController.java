@@ -87,18 +87,75 @@ public class RolDePagoController {
 	
 	@PostMapping(value="/save")
 	public String save(RolDePago rolDePago, Model model, SessionStatus status, RedirectAttributes flash, HttpSession session) {
-		rolDePago.setFechaGeneracion(Calendar.getInstance());
-		RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
-		rolDePago.setDetalles(rol.getDetalles());
-		/*List<Detalle> aux = new ArrayList<Detalle>();
-		for(Detalle d : rol.getDetalles()) {
-			aux.add(d);
+		if(rolDePago.getTrabajador().getIdtrabajador() == 0) {
+			RolDePago rdp = new RolDePago();
+			rolDePago.setDetalles(new ArrayList<Detalle>());
+			List<Trabajador> trabajadores = srvTrabajador.findAll();
+			model.addAttribute("title","Registro de un nuevo Rol De Pago");
+			model.addAttribute("rolDePago", rdp);
+			model.addAttribute("trabajadores", trabajadores);
+			flash.addFlashAttribute("error", "Trabajador No Valido");
+			return "redirect:/roldepago/create";
 		}
-		rolDePago.getDetalles().addAll(aux);*/
-		srvRolDePago.save(rolDePago);
-		status.setComplete();
-		flash.addFlashAttribute("success", "Rol Generado Exitosamente");
-		return "redirect:/roldepago/retrieve/"+srvRolDePago.findLast();
+		if(rolDePago.getMes().equals("0")) {
+			Calendar c1 = Calendar.getInstance();
+			int mes = c1.get(Calendar.MONTH)+1;
+			String mese = "";
+			switch(mes){
+				case 1:
+					mese="Enero";
+					break;
+				case 2:
+					mese="Febrero";
+					break;
+				case 3:
+					mese="Marzo";
+					break;
+				case 4:
+					mese="Abril";
+					break;
+				case 5:
+					mese="Mayo";
+					break;
+				case 6:
+					mese="Junio";
+					break;
+				case 7:
+					mese="Julio";
+					break;
+				case 8:
+					mese="Agosto";
+					break;
+				case 9:
+					mese="Septiembre";
+					break;
+				case 10:
+					mese="Octubre";
+					break;
+				case 11:
+					mese="Noviembre";
+					break;
+				case 12:
+					mese="Diciembre";
+					break;
+			};
+			rolDePago.setMes(mese);
+		}
+		if(rolDePago.getAnio().equals("0")) {
+			rolDePago.setAnio(""+Calendar.getInstance().get(Calendar.YEAR));
+		}
+		if(srvRolDePago.validarRol(rolDePago)) {	
+			rolDePago.setFechaGeneracion(Calendar.getInstance());
+			RolDePago rol = (RolDePago) session.getAttribute("rolDePago");
+			rolDePago.setDetalles(rol.getDetalles());
+			srvRolDePago.save(rolDePago);
+			status.setComplete();
+			flash.addFlashAttribute("success", "Rol Generado Exitosamente");
+			return "redirect:/roldepago/retrieve/"+srvRolDePago.findLast();
+		}else {
+			flash.addFlashAttribute("error", "Rol Existente - Borrelo antes de Generarlo Nuevamente");
+			return "redirect:/roldepago/list";
+		}
 	}
 	
 	
@@ -111,7 +168,10 @@ public class RolDePagoController {
 				rol.getDetalles().add(detalle);
 			}else {
 				float m = d.getMonto()/100;
-				detalle.setMonto(-(rol.getTrabajador().getCargo().getSueldo()*m));
+				float number = rol.getTrabajador().getCargo().getSueldo()*m;
+				number = Math.round(number * 100);
+				number = number/100;
+				detalle.setMonto(-(number));
 				rol.getDetalles().add(detalle);
 			}
 			return detalle;
@@ -142,13 +202,19 @@ public class RolDePagoController {
 					pv = false;
 				}
 				if(d.getNombre().equals("IESS")) {
-					d.setMonto(-(t.getCargo().getSueldo()*0.0945f));
+					float number = t.getCargo().getSueldo()*0.0945f;
+					number = Math.round(number * 100);
+					number = number/100;
+					d.setMonto(-(number));
 					pv = false;
 				}
 				if(srvDescuento.findNombre(d.getNombre()) != null) {
 					Descuento des = srvDescuento.findNombre(d.getNombre()) ;
 					float m = des.getMonto()/100;
-					d.setMonto(-(t.getCargo().getSueldo()*m));
+					float number = t.getCargo().getSueldo()*m;
+					number = Math.round(number * 100);
+					number = number/100;
+					d.setMonto(-(number));
 				}
 			}
 			if(pv) {
@@ -157,7 +223,10 @@ public class RolDePagoController {
 				det.setMonto(t.getCargo().getSueldo());
 				Detalle det2 = new Detalle();
 				det2.setNombre("IESS");
-				det2.setMonto(-(t.getCargo().getSueldo()*0.0945f));
+				float number = t.getCargo().getSueldo()*0.0945f;
+				number = Math.round(number * 100);
+				number = number/100;
+				det2.setMonto(-(number));
 				rol.getDetalles().add(det);
 				rol.getDetalles().add(det2);
 			}
