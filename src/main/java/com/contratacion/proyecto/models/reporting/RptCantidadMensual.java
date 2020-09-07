@@ -7,13 +7,15 @@ public class RptCantidadMensual implements Serializable{
 	
 	private String mes;
 	private Integer cantidad;
+	private Float sumatoria;
 	
-	public RptCantidadMensual(String mes, Integer cantidad) {
+	public RptCantidadMensual(String mes, Integer cantidad, Float sumatoria) {
 		super();
 		this.mes = mes;
 		this.cantidad = cantidad;
+		this.sumatoria = sumatoria;
 	}
-	
+
 	public RptCantidadMensual() {
 		super();
 	}
@@ -33,6 +35,13 @@ public class RptCantidadMensual implements Serializable{
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	
+
+	public Float getSumatoria() {
+		return sumatoria;
+	}
+
+	public void setSumatoria(Float sumatoria) {
+		this.sumatoria = sumatoria;
+	}
+		
 }

@@ -124,12 +124,14 @@ public class RolDePagoService implements IRolDePagoService{
 			};
 			List<RolDePago> roles = dao.findByMes(mes);
 			Integer cant = 0;
+			Float sum = 0.0f;
 			for(RolDePago r : roles) {
 				if(r.getAnio().equals(Anio)) {
 					cant++;
+					sum+=r.getTotal();
 				}
 			}
-			resultado.add(new RptCantidadMensual(mes,cant));
+			resultado.add(new RptCantidadMensual(mes,cant,sum));
 		}
 		return resultado;
 	}
