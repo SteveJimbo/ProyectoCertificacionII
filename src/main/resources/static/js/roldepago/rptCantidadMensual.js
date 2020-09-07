@@ -1,65 +1,9 @@
-function report(){	
-	$.ajax({
-		url : "/matricula/dataRptMatriculadosMaterias",
-		method : 'GET',
-		success : function(response){
-			console.log(response);
-			
-			var toData = [];
-			var toLabels = [];
-			var toColors = [];
-			
-			$.each(response, function(i, item){
-				console.log(item);
-				toData.push(item.estudiantes);
-				toLabels.push(item.nombre);						
-				toColors.push(getRandomColor());
-			});
-									
-			var barChartData = {
-				labels: toLabels,
-				datasets: [{
-					label: 'Alumnos',
-					backgroundColor: getRandomColor(),
-					borderColor: getRandomColor(),
-					borderWidth: 1,
-					data: toData
-				}]
-
-			};
-
-			window.onload = function() {
-				var ctx = document.getElementById('chart-area-1').getContext('2d');
-				window.myBar = new Chart(ctx, {
-					type: 'bar',
-					data: barChartData,
-					options: {
-						responsive: true,
-						legend: {
-							position: 'top',
-						},
-						title: {
-							display: true,
-							text: 'Número de matriculados por materia'
-						}
-					}
-				});
-
-			};
-			
-		},
-		error : function(err){
-			console.log(err);
-		}		
-	});	
-}
-
-function report3(){	
+function report2(){	
 	var selectBox = document.getElementById("anio");
     var id = selectBox.options[selectBox.selectedIndex].value;
 	var color = Chart.helpers.color;
 	$.ajax({
-		url : "/roldepago/dataRptCantidadMensual/"+id,
+		url : "/roldepago/dataRptCantidadMensual/"+2020,
 		method : 'GET',
 		success : function(response){
 			
@@ -67,47 +11,37 @@ function report3(){
 			
 			var toData = [];
 			var toLabels = [];
-			var Users = [];
+			var toCant = [];
+			var toSum = [];
+			var toTipos = [];
 			
-			//Agregar Datos a Tabla del reporte 
+			toTipos.push("Cantidad");
+			toTipos.push("Sumatoria");
+			
 			$.each(response, function(i, item){
-				document.getElementById("tablaValores").insertRow(-1).innerHTML = '<td><b>'+item.materia+'</b></td><td></td><td></td>';	
-				$.each(item.usuarios,function(x,elemento){
-					document.getElementById("tablaValores").insertRow(-1).innerHTML = '<td></td><td>'+elemento.usuario+'</td><td>'+elemento.cant+'</td>';
-				});
+				toLabels.push(item.mes);
+				toCant.push(item.cantidad);
+				toSum.push(0);
 			});
-			
-			//Saber que materias y que usuarios existen
-			$.each(response, function(i, item){
-				//Agregar las materias que existen
-				toLabels.push(item.materia);	
-				$.each(item.usuarios,function(x,elemento){
-					//Agregar los usuarios que existan
-					if(!Users.includes(elemento.usuario)){
-						Users.push(elemento.usuario);
-					}
-				});
-			});
-			
-			//Crear los Datasets
-			$.each(Users, function(i,item){
-				var valores = new Array(toLabels.lenght);
-				valores.fill(0);
-				$.each(response,function(x,elemento){
-					$.each(elemento.usuarios,function(y,valor){
-						if(valor.usuario == item){
-							valores[toLabels.indexOf(elemento.materia)] = valor.cant;
-						}
-					});
-				});
+			console.log(toLabels);
+			console.log(toCant);
+			console.log(toSum);
 				var dat = {
-					label: item,
+					label: "Cantidad",
 					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
 					borderWidth: 1,
-					data: valores,
+					data: [1,2,3,4,5,6,7,8,9,10,11,12],
 				}
+				console.log(dat);
 				toData.push(dat);
-			});
+				var dat2 = {
+					label: "Sumatoria",
+					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
+					borderWidth: 1,
+					data: [1,2,3,4,5,6,7,8,9,10,11,12],
+				}
+				console.log(dat2);
+				toData.push(dat2);
 									
 			var barChartData = {
 				labels: toLabels,
@@ -148,7 +82,7 @@ function report3(){
 	});	
 }
 
-function report2(){
+function report3(){
 	
 	var color = Chart.helpers.color;
 	var barChartData = {
@@ -201,6 +135,6 @@ function report2(){
 
 $(document).ready(function(){
 	
-	//report3();		
+	report2();		
 
 });
