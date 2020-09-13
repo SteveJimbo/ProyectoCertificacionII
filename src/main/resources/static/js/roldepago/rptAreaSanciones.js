@@ -24,7 +24,7 @@ function report2(){
 			
 			$.each(response, function(i, item){
 				toLabels.push(item.area);
-				$.each(item.sancionesk, function(x,elemento){
+				$.each(item.sanciones, function(x,elemento){
 					if(!toSanc.includes(elemento.sancion)){
 						toSanc.push(elemento.sancion);
 					}
