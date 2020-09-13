@@ -8,13 +8,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.contratacion.proyecto.models.dao.IArea;
+import com.contratacion.proyecto.models.dao.IDescuento;
 import com.contratacion.proyecto.models.dao.IDetalle;
 import com.contratacion.proyecto.models.dao.IRolDePago;
 import com.contratacion.proyecto.models.dao.ITrabajador;
 import com.contratacion.proyecto.models.entities.Area;
+import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
 import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.reporting.LstSancionMonto;
+import com.contratacion.proyecto.models.reporting.RptAreaSanciones;
 import com.contratacion.proyecto.models.reporting.RptCantidadMensual;
 import com.contratacion.proyecto.models.reporting.RptMontoArea;
 
@@ -32,6 +36,9 @@ public class RolDePagoService implements IRolDePagoService{
 	
 	@Autowired
 	private ITrabajador daoTrabajador;
+	
+	@Autowired
+	private IDescuento daoDescuento;
 	
 	@Override
 	@Transactional
@@ -200,5 +207,76 @@ public class RolDePagoService implements IRolDePagoService{
 			resultado.add(new RptCantidadMensual(mes,cant,sum));
 		}
 		return resultado;
+	}
+	
+	@Override
+	public List<RptAreaSanciones> rptAreaSanciones(Integer mes, String anio){
+		List<RptAreaSanciones> res = new ArrayList<RptAreaSanciones>();
+		String mese = "";
+		switch(mes){
+			case 1:
+				mese="Enero";
+				break;
+			case 2:
+				mese="Febrero";
+				break;
+			case 3:
+				mese="Marzo";
+				break;
+			case 4:
+				mese="Abril";
+				break;
+			case 5:
+				mese="Mayo";
+				break;
+			case 6:
+				mese="Junio";
+				break;
+			case 7:
+				mese="Julio";
+				break;
+			case 8:
+				mese="Agosto";
+				break;
+			case 9:
+				mese="Septiembre";
+				break;
+			case 10:
+				mese="Octubre";
+				break;
+			case 11:
+				mese="Noviembre";
+				break;
+			case 12:
+				mese="Diciembre";
+				break;
+		};
+		
+		List<RolDePago> roles = dao.findByMes(mese);
+		
+		List<Descuento> descuentos = (List<Descuento>)daoDescuento.findAll();
+		
+		List<Area> areas = (List<Area>)daoArea.findAll();
+		
+		for(Area a : areas) {
+			List<LstSancionMonto> lstSM = new ArrayList<LstSancionMonto>();
+			for(Descuento d : descuentos) {
+				Float monto = 0.0f;
+				for(RolDePago r : roles) {
+					if(r.getAnio().equals(anio)) {
+						if(r.getTrabajador().getArea().getNombre().equals(a.getNombre())) {
+							for(Detalle det : r.getDetalles()) {
+								if(det.getNombre().equals(d.getNombre())) {
+									monto += d.getMonto();
+								}
+							}
+						}
+					}
+				}
+				lstSM.add(new LstSancionMonto(d.getNombre(),monto));
+			}
+			res.add(new RptAreaSanciones(a.getNombre(),lstSM));
+		}
+		return res;
 	}
 }

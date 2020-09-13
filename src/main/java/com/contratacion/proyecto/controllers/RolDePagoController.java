@@ -25,6 +25,7 @@ import com.contratacion.proyecto.models.entities.Descuento;
 import com.contratacion.proyecto.models.entities.Detalle;
 import com.contratacion.proyecto.models.entities.RolDePago;
 import com.contratacion.proyecto.models.entities.Trabajador;
+import com.contratacion.proyecto.models.reporting.RptAreaSanciones;
 import com.contratacion.proyecto.models.reporting.RptCantidadMensual;
 import com.contratacion.proyecto.models.reporting.RptMontoArea;
 import com.contratacion.proyecto.models.services.DetalleService;
@@ -297,4 +298,22 @@ public class RolDePagoController {
 		model.addAttribute("title","Reporte de la Cantidad de Roles de Pago por Mes");
 		return "roldepago/rptCantidadMensual";				
 	}
+	
+	@GetMapping(value = "/dataRptAreaSanciones/{id}/{id2}", produces="application/json")
+	public @ResponseBody List<RptAreaSanciones> dataRptAreaSanciones(@PathVariable(value="id") Integer id,@PathVariable(value="id2") Integer id2 , Model model) {				
+		try {
+			String anio = ""+id;
+			return srvRolDePago.rptAreaSanciones(id2, anio);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}		
+	}
+	
+	@GetMapping(value = "/rptAreaSanciones")
+	public String rptAreaSanciones(Model model) {
+		model.addAttribute("title","Reporte de Descuentos por Área y Mes");
+		return "roldepago/rptAreaSanciones";				
+	}
+	
 }
