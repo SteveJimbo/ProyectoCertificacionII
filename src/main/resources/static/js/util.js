@@ -1,4 +1,4 @@
-var developURL = "http://localhost:8080/";
+var developURL = "https://siscononline.herokuapp.com/";
 
 function objectifyForm(formArray) {
 	var returnArray = {};
