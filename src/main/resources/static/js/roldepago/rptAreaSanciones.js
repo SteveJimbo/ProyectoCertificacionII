@@ -53,8 +53,8 @@ function report2(){
 				labels: toLabels,
 				datasets: toData
 			};
-			console.log(err);
-			//console.log(barChartData);
+			
+			console.log(barChartData);
 			cargar();
 				
 			
