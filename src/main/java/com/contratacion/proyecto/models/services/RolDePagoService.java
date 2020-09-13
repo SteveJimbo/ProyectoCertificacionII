@@ -267,7 +267,7 @@ public class RolDePagoService implements IRolDePagoService{
 						if(r.getTrabajador().getArea().getNombre().equals(a.getNombre())) {
 							for(Detalle det : r.getDetalles()) {
 								if(det.getNombre().equals(d.getNombre())) {
-									monto += d.getMonto();
+									monto += Math.abs(d.getMonto()) ;
 								}
 							}
 						}
