@@ -18,9 +18,9 @@ function report2(){
 			var data = [];
 			var area = [];
 			
-			var toLabels[];
-			var toData[];
-			var toSanc[];
+			var toLabels = [];
+			var toData = [];
+			var toSanc = [];
 			
 			$.each(response, function(i, item){
 				toLabels.push(item.area);
