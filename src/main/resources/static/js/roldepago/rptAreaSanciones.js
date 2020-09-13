@@ -34,7 +34,7 @@ function report2(){
 			$.each(toSanc, function(i,item){
 				var valores = new Array(toLabels.lenght).fill(0);
 				$.each(response,function(x,elemento){
-					$.each(response,function(y,valor){
+					$.each(elemento.sanciones,function(y,valor){
 						if(valor.sancion == item){
 							valores[toLabels.indexOf(elemento.materia)] = valor.monto;
 						}
