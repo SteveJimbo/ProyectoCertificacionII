@@ -261,7 +261,7 @@ public class RolDePagoService implements IRolDePagoService{
 		for(Area a : areas) {
 			List<LstSancionMonto> lstSM = new ArrayList<LstSancionMonto>();
 			for(Descuento d : descuentos) {
-				Float monto = 0.0f;
+				Float monto = 0f;
 				for(RolDePago r : roles) {
 					if(r.getAnio().equals(anio)) {
 						if(r.getTrabajador().getArea().getNombre().equals(a.getNombre())) {
