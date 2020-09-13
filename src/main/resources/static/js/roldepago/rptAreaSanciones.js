@@ -17,19 +17,41 @@ function report2(){
 			var titulo = "Sumatoria";
 			var data = [];
 			var area = [];
+			
+			var toLabels[];
+			var toData[];
+			var toSanc[];
+			
 			$.each(response, function(i, item){
-				area.push(item.area);
-				data.push(item.monto);
+				toLabels.push(item.area);
+				$.each(item.sancionesk, function(x,elemento){
+					if(!toSanc.includes(elemento.sancion)){
+						toSanc.push(elemento.sancion);
+					}
+				});
+			});
+			
+			$.each(toSanc, function(i,item){
+				var valores = new Array(toLabels.lenght).fill(0);
+				$.each(response,function(x,elemento){
+					$.each(response,function(y,valor){
+						if(valor.sancion == item){
+							valores[toLabels.indexOf(elemento.materia)] = valor.monto;
+						}
+					});
+				});
+				var dat = {
+					label: item,
+					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
+					borderWidth: 1,
+					data: valores,
+				}
+				toData.push(dat);
 			});
 									
 			barChartData = {
-				labels: ['Sumatoria'],
-				datasets: [{
-					label: area,
-					backgroundColor: color(getRandomColor()).alpha(0.5).rgbString(),			
-					borderWidth: 1,
-					data: data
-				}]
+				labels: toLabels,
+				datasets: toData
 			};
 			
 			//console.log(barChartData);
