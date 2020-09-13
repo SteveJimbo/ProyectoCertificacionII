@@ -53,7 +53,7 @@ function report2(){
 				labels: toLabels,
 				datasets: toData
 			};
-			
+			console.log(err);
 			//console.log(barChartData);
 			cargar();
 				
@@ -80,7 +80,7 @@ function cargar(){
 						},
 						title: {
 							display: true,
-							text: 'Sumatoria por área'
+							text: 'Descuentos por Área y Mes'
 						},
 						scales: {
 					        yAxes: [{
