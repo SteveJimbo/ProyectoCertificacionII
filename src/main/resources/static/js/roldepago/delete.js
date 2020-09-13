@@ -27,20 +27,6 @@ function onDelete(id,button){
 		
 }
 
-function list(){
-	$.ajax({
-		url : "/club/list/",
-		method : 'GET',
-		success : function(response){
-			$("#listClub").empty();
-			$("#listClub").html(response);
-		},
-		error : function(err){
-			console.log(err);
-		}		
-	});	
-}
-
 $(document).ready(function(){
 	
 	$(".btnDelete").click(function(){

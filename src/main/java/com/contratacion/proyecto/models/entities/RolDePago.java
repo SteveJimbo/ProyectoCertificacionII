@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,7 +53,7 @@ public class RolDePago implements Serializable{
 	@ManyToOne
 	private Trabajador trabajador;
 	
-	@OneToMany(mappedBy="rolDePago", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="rolDePago", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Detalle> detalles;
 
 	public RolDePago() {
