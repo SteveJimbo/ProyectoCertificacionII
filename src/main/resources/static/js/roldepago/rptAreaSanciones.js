@@ -36,7 +36,7 @@ function report2(){
 				$.each(response,function(x,elemento){
 					$.each(elemento.sanciones,function(y,valor){
 						if(valor.sancion == item){
-							valores[toLabels.indexOf(elemento.materia)] = valor.monto;
+							valores[toLabels.indexOf(elemento.area)] = valor.monto;
 						}
 					});
 				});
